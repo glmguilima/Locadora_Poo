@@ -5,16 +5,20 @@ package Locadora;
  */
 public  class Cliente {
     private long CPF;
-    private String nome, endereco;
+    private String nome,endereco;
     private   int numCNH, telefone;
 
-    public Cliente(String nome){
+
+    public Cliente(String nome,long CPF, int numCNH,String endereco,int telefone){
         this.nome=nome;
-    }
-    public Cliente(String nome,long CPF, int numCNH){
-        this(nome);
         this.CPF=CPF;
         this.numCNH=numCNH;
+        this.endereco=endereco;
+        this.telefone=telefone;
+    }
+
+    public Cliente() {
+
     }
 
     public long getCPF() {
@@ -59,12 +63,12 @@ public  class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente {" +
-                "CPF=" + CPF +
-                ", nome='" + nome + '\'' +
-                ", endereco='" + endereco + '\'' +
-                ", numCNH=" + numCNH +
-                ", telefone=" + telefone +
+        return "Cliente{" +
+                "Nome = '" + nome + '\'' +
+                ", CPF = " + CPF +
+                ", Número da CNH = " + numCNH + '\'' +
+                ", Endereço = '" + endereco + '\'' +
+                ", Telefone = " + telefone +
                 '}';
     }
 }

@@ -8,23 +8,23 @@ import java.util.ArrayList;
  * @author glmgu on 17/10/2022
  */
 public class ListaClientes implements IClientes {
-    ArrayList<Cliente> lista;
+    ArrayList<Cliente> listaCliente;
 
     public ListaClientes() {
-        lista = new ArrayList<Cliente>();
+        listaCliente = new ArrayList<Cliente>();
     }
 
 
     @Override
     public void add(Cliente c) {
-        lista.add(c);
+        listaCliente.add(c);
     }
 
     @Override
     public Cliente get(long CPF) {
-        for (int i = 0; i < lista.size() ; i++) {
-            if(lista.get(i).getCPF()==CPF){
-                return lista.get(i);
+        for (int i = 0; i < listaCliente.size() ; i++) {
+            if(listaCliente.get(i).getCPF()==CPF){
+                return listaCliente.get(i);
             }
         }
         return null;
@@ -32,9 +32,9 @@ public class ListaClientes implements IClientes {
 
     @Override
     public String getInfo(long CPF) {
-        for (int i = 0; i < lista.size() ; i++) {
-            if(lista.get(i).getCPF()==CPF){
-                return lista.get(i).toString();
+        for (int i = 0; i < listaCliente.size() ; i++) {
+            if(listaCliente.get(i).getCPF()==CPF){
+                return listaCliente.get(i).toString();
             }
         }
         return null;
@@ -42,8 +42,8 @@ public class ListaClientes implements IClientes {
 
     @Override
     public String getInfo() {
-        for (int i = 0; i < lista.size() ; i++) {
-            return lista.toString();
+        for (int i = 0; i < listaCliente.size() ; i++) {
+            return listaCliente.toString();
         }
         return null;
     }
@@ -51,18 +51,19 @@ public class ListaClientes implements IClientes {
     @Override
     public String getResumoInfo() {
         String dados= "";
-        for (int i = 0; i < lista.size() ; i++) {
-            dados += " Nome: "+ lista.get(i).getNome()+ " CPF: "+lista.get(i).getCPF()+"\n";
+        for (int i = 0; i < listaCliente.size() ; i++) {
+            dados += " Nome: "+ listaCliente.get(i).getNome()+ " CPF: "+
+                    listaCliente.get(i).getCPF()+"\n";
         }
         return dados;
     }
 
 
-    @Override
+    @Override //Testar
     public boolean remove(long CPF) {
-        for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getCPF()==CPF){
-                lista.remove(lista.get(i));
+        for (int i = 0; i < listaCliente.size(); i++) {
+            if (listaCliente.get(i).getCPF()==CPF){
+                listaCliente.remove(i);
                 return true;
             }
         }
@@ -71,8 +72,8 @@ public class ListaClientes implements IClientes {
 
     @Override
     public boolean existe(long CPF) {
-        for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getCPF() == CPF) {
+        for (int i = 0; i < listaCliente.size(); i++) {
+            if (listaCliente.get(i).getCPF() == CPF) {
                 return true;
             }
         }
@@ -82,7 +83,7 @@ public class ListaClientes implements IClientes {
     @Override
     public String toString() {
         return "ListaClientes{" +
-                "lista=" + lista +
+                "lista=" + listaCliente +
                 '}';
     }
 }
