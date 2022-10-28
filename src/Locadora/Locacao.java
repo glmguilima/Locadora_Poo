@@ -1,6 +1,8 @@
 package Locadora;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 /**
  * @author glmgu on 13/10/2022
@@ -9,19 +11,22 @@ public class Locacao {
     private static int codgeral =1;
     private int codigo;
     private boolean seguro = false;
-    private Date retirada,entrega;
     private Cliente cliente;
     private  Veiculo veiculo;
+    private String dataInicial,dataFinal;
 
 
 
 
-    public Locacao( Cliente cliente, Veiculo veiculo, boolean seguro) { // implementar data
+    public Locacao(Cliente cliente, Veiculo veiculo, boolean seguro, String dataInicial, String dataFinal) {
         codigo = codgeral++;
         this.seguro = seguro;
         this.veiculo = veiculo;
         this.cliente = cliente;
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
     }
+
 
     public static int getCodgeral() {
         return codgeral;
@@ -48,22 +53,6 @@ public class Locacao {
     }
 
 
-    public Date getRetirada() {
-        return retirada;
-    }
-
-    public void setRetirada(Date retirada) {
-        this.retirada = retirada;
-    }
-
-    public Date getEntrega() {
-        return entrega;
-    }
-
-    public void setEntrega(Date entrega) {
-        this.entrega = entrega;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -74,13 +63,22 @@ public class Locacao {
 
     @Override
     public String toString() {
-        return "Locacao {" +
-                "Código=" + codigo +
+        return "Locacao{" +
+                "codigo=" + codigo +
                 ", seguro=" + seguro +
-                ", retirada=" + retirada +
-                ", entrega=" + entrega +
-                ", Cliente=" + cliente +
-                ", Veículo=" + veiculo +
+                ", cliente=" + cliente +
+                ", veiculo=" + veiculo +
+                ", dataInicial='" + dataInicial + '\'' +
+                ", dataFinal='" + dataFinal + '\'' +
                 '}';
+    }
+
+    /**
+     * pode ser usado para converter String para calendario, mas não foi usado até entao.
+     */
+    public void formatterCalendar() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar calendar = Calendar.getInstance();
+        System.out.println(formatter.format(calendar.getTime()));
     }
 }

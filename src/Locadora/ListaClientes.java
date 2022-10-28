@@ -59,7 +59,7 @@ public class ListaClientes implements IClientes {
     }
 
 
-    @Override //Testar
+    @Override
     public boolean remove(long CPF) {
         for (int i = 0; i < listaCliente.size(); i++) {
             if (listaCliente.get(i).getCPF()==CPF){

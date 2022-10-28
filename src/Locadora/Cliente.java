@@ -17,9 +17,6 @@ public  class Cliente {
         this.telefone=telefone;
     }
 
-    public Cliente() {
-
-    }
 
     public long getCPF() {
         return CPF;
