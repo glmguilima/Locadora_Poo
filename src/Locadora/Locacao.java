@@ -12,7 +12,7 @@ public class Locacao {
     private int codigo;
     private boolean seguro = false;
     private Cliente cliente;
-    private  Veiculo veiculo;
+    private Veiculo veiculo;
     private String dataInicial,dataFinal;
 
 
