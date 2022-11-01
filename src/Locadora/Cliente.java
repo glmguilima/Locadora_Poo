@@ -60,7 +60,7 @@ public  class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "\n Cliente{" +
                 "Nome = '" + nome + '\'' +
                 ", CPF = " + CPF +
                 ", Número da CNH = " + numCNH + '\'' +

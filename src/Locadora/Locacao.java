@@ -18,6 +18,7 @@ public class Locacao {
 
 
 
+
     public Locacao(Cliente cliente, Veiculo veiculo, boolean seguro, String dataInicial, String dataFinal) {
         codigo = codgeral++;
         this.seguro = seguro;
