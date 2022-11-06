@@ -28,7 +28,7 @@ public class Caminhao extends Veiculo {
 
     @Override
     public String toString() {
-        return "Caminhao{" +
+        return "\nCaminhao{" +
                 "numEixo=" + numEixo +
                 ", cargaMax=" + cargaMax +
                 "} " + super.toString();

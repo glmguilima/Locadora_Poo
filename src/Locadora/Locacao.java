@@ -64,7 +64,7 @@ public class Locacao {
 
     @Override
     public String toString() {
-        return "Locacao{" +
+        return "\n Locacao{" +
                 "codigo=" + codigo +
                 ", seguro=" + seguro +
                 ", cliente=" + cliente +

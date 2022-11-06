@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Guilherme Menezes on 20/10/2022
  */
 public class ListaLocacoes implements ILocacoes {
-    ArrayList<Locacao> listaLoc;
+    public ArrayList<Locacao> listaLoc;
 
 
     public ListaLocacoes(){
@@ -96,8 +96,8 @@ public class ListaLocacoes implements ILocacoes {
 
     @Override
     public String toString() {
-        return "Lista de Locações { " +
-                "Lista = " + listaLoc +
+        return "ListaLocacoes{" +
+                "listaLoc=" + listaLoc +
                 '}';
     }
 }

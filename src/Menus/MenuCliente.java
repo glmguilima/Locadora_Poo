@@ -1,5 +1,7 @@
-package Locadora;
+package Menus;
 
+import Locadora.Cliente;
+import Locadora.ListaClientes;
 import Utils.AppCor;
 
 import java.util.Scanner;
@@ -17,14 +19,14 @@ public class MenuCliente {
 
     public void menuCliente(){
         int op2;
-        preCadastros();
         do {
             System.out.println("\n" + AppCor.BLUE + "Menu de Gerenciamento de Clientes" + AppCor.RESET + "\n");
             System.out.println(AppCor.GREEN + "1. Adiconar Cliente");
             System.out.println("2. Buscar Cliente");
-            System.out.println("3. Modificar informações do Cliente");
-            System.out.println(AppCor.RED + "4. Excluir Cliente" + AppCor.RESET);
-            System.out.println(AppCor.PURPLE + "0. Sair\n"+AppCor.RESET);
+            System.out.println("3. Buscar todos os Clientes");
+            System.out.println("4. Modificar Cliente"); // falta implementar.
+            System.out.println(AppCor.RED + "5. Excluir Cliente" + AppCor.RESET);
+            System.out.println(AppCor.PURPLE + "0. Voltar ao menu anterior\n"+AppCor.RESET);
             op2 = entrada.nextInt();
             entrada.nextLine();
             switch (op2) {
@@ -41,6 +43,9 @@ public class MenuCliente {
                 case 4:
 
                     break;
+                case 5:
+                    excluirCliente();
+                    break;
                 case 0:
 
                     break;
@@ -53,7 +58,6 @@ public class MenuCliente {
 
 
     public void addCliente(){
-
         System.out.println("= = = = Bem vindo ao Cadastro de Cliente = = = = ");
         System.out.println("Digite o nome do cliente");
         nome = entrada.nextLine();
@@ -79,6 +83,18 @@ public class MenuCliente {
         }
     }
 
+    public void excluirCliente(){
+        System.out.println("Digite o CPF do cliente");
+        CPF = entrada.nextLong();
+        entrada.nextLine();
+        if (listaC.existe(CPF)==true){
+            System.out.println(AppCor.GREEN_BRIGHT+"Cliente encontrado");
+            listaC.listaCliente.remove(listaC.get(CPF));
+            System.out.println("Cliente Excluído.");
+        }else {
+            System.out.println(AppCor.RED+"O cliente não está cadastrado."+AppCor.RESET);
+        }
+    }
     public void buscarCliente(){
         System.out.println("= = = = Bem vindo a  busca de Cliente = = = = ");
         System.out.println("Digite o CPF do cliente");
@@ -94,7 +110,7 @@ public class MenuCliente {
 
     public void buscaAllClientes(){
         System.out.println("= = = = Abaixo segue todos os clientes cadastrados = = = = ");
-        System.out.println(listaC.getInfo());
+        System.out.println(listaC.listaCliente.toString());
     }
 
     public void preCadastros() {
@@ -104,6 +120,5 @@ public class MenuCliente {
         listaC.listaCliente.add(c1);
         listaC.listaCliente.add(c2);
         listaC.listaCliente.add(c3);
-
     }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author glmgu on 17/10/2022
  */
 public class ListaClientes implements IClientes {
-    ArrayList<Cliente> listaCliente;
+    public ArrayList<Cliente> listaCliente;
 
     public ListaClientes() {
         listaCliente = new ArrayList<Cliente>();

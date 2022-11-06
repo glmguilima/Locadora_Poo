@@ -8,10 +8,10 @@ import java.util.ArrayList;
  * @author glmgu on 21/10/2022
  */
 public class ListaVeiculos implements IVeiculos {
-    ArrayList<Veiculo> listaVeiculo;
+   public ArrayList<Veiculo> listaVeiculo;
 
     public ListaVeiculos(){
-        listaVeiculo = new ArrayList<Veiculo>();
+         listaVeiculo = new ArrayList<Veiculo>();
     }
 
     @Override
@@ -21,10 +21,9 @@ public class ListaVeiculos implements IVeiculos {
 
     @Override
     public Veiculo get(String placa) {
-        for (int i = 0; i < listaVeiculo.size(); i++) {
-            if (listaVeiculo.get(i).getPlaca()==placa){
-                return  listaVeiculo.get(i);
-            }
+        for (Veiculo veiculo : listaVeiculo) {
+            if (veiculo.getPlaca().equals(placa))
+               return veiculo;
         }
         return null;
     }
@@ -32,7 +31,7 @@ public class ListaVeiculos implements IVeiculos {
     @Override
     public String getInfo(String placa) {
         for (int i = 0; i < listaVeiculo.size(); i++) {
-            if(listaVeiculo.get(i).getPlaca()==placa) {
+            if(listaVeiculo.get(i).getPlaca().equals(placa)) {
                 return listaVeiculo.get(i).toString();
             }
         }
@@ -61,7 +60,7 @@ public class ListaVeiculos implements IVeiculos {
     @Override
     public boolean remove(String placa) {
         for (int i = 0; i < listaVeiculo.size(); i++) {
-            if(listaVeiculo.get(i).getPlaca()==placa){
+            if(listaVeiculo.get(i).getPlaca().equals(placa)){
                 listaVeiculo.remove(i);
                 return true;
             }
@@ -72,7 +71,7 @@ public class ListaVeiculos implements IVeiculos {
     @Override
     public boolean existe(String placa) {
         for (int i = 0; i < listaVeiculo.size(); i++) {
-            if(listaVeiculo.get(i).getPlaca()==placa){
+            if(listaVeiculo.get(i).getPlaca().equals(placa)){
             return true;
             }
         }

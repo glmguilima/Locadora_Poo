@@ -40,7 +40,7 @@ public abstract class Veiculo {
 
     @Override
     public String toString() {
-        return "Veiculos{" +
+        return "\nVeiculos{" +
                 "placa='" + placa + '\'' +
                 ", ano=" + ano +
                 ", valorDiaria=" + diaria +

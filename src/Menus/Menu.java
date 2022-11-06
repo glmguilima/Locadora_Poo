@@ -1,4 +1,4 @@
-package Locadora;
+package Menus;
 
 import Utils.AppCor;
 
@@ -16,6 +16,8 @@ public class Menu {
 
 
     public void Menu(){
+        menuCliente.preCadastros();
+        menuLocacoes.preCadastroVeiculos();
         do{
             telaInicial();
             op = entrada.nextInt();

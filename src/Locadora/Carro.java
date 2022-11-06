@@ -47,7 +47,7 @@ public class Carro extends Veiculo {
 
     @Override
     public String toString() {
-        return "Carro{" +
+        return "\nCarro{" +
                 "numPassageiros=" + numPassageiros +
                 ", numPortas=" + numPortas +
                 ", mediaKM=" + mediaKM +

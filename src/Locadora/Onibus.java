@@ -47,7 +47,7 @@ public class Onibus extends Veiculo {
 
     @Override
     public String toString() {
-        return "Onibus{" +
+        return "\nOnibus{" +
                 "numPassageiros=" + numPassageiros +
                 ", categoria='" + categoria + '\'' +
                 ", wifi=" + wifi +
