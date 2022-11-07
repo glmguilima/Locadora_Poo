@@ -22,8 +22,9 @@ public  class Cliente {
         return CPF;
     }
 
-    public void setCPF(long CPF) {
+    public long setCPF(long CPF) {
         this.CPF = CPF;
+        return CPF;
     }
 
     public String getNome() {

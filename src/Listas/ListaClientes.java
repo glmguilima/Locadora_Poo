@@ -1,6 +1,7 @@
-package Locadora;
+package Listas;
 
 import Interfaces.IClientes;
+import Locadora.Cliente;
 
 import java.util.ArrayList;
 
@@ -83,7 +84,7 @@ public class ListaClientes implements IClientes {
     @Override
     public String toString() {
         return "ListaClientes{" +
-                "lista=" + listaCliente +
+                "\nlista=" + listaCliente +
                 '}';
     }
 }

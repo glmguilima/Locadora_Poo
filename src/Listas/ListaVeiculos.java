@@ -1,6 +1,7 @@
-package Locadora;
+package Listas;
 
 import Interfaces.IVeiculos;
+import Locadora.Veiculo;
 
 import java.util.ArrayList;
 
@@ -81,7 +82,7 @@ public class ListaVeiculos implements IVeiculos {
     @Override
     public String toString() {
         return "Lista de Veículos{" +
-                "Veículos=" + listaVeiculo +
+                "\nVeículos=" + listaVeiculo +
                 '}';
     }
 }

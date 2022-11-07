@@ -9,13 +9,13 @@ import java.util.Scanner;
  */
 public class Menu {
     long CPF;
-     Scanner entrada = new Scanner(System.in);
-     int op;
-     MenuCliente menuCliente= new MenuCliente();
-     MenuLocacoes menuLocacoes = new MenuLocacoes();
+    Scanner entrada = new Scanner(System.in);
+    int op;
+    MenuVeiculos menuVeiculos = new MenuVeiculos();
+    MenuCliente menuCliente = new MenuCliente();
+    MenuLocacoes menuLocacoes = new MenuLocacoes();
+    public void iniciarMenu(){
 
-
-    public void Menu(){
         menuCliente.preCadastros();
         menuLocacoes.preCadastroVeiculos();
         do{
@@ -30,16 +30,16 @@ public class Menu {
                     menuLocacoes.menuLocacoes();
                     break;
                 case 3:
-
+                    menuVeiculos.menuVeiculos();
                     break;
                 case 4:
-
+                    System.out.println(menuCliente.listaC.toString());
                     break;
                 case 5:
-
+                    System.out.println(menuLocacoes.listaLocacoes.toString());
                     break;
                 case 6:
-
+                    System.out.println( menuLocacoes.listaV.toString());
                     break;
                 case 0: break;
                 default:
@@ -53,16 +53,13 @@ public class Menu {
         System.out.println("\n"+ AppCor.BLUE +"Locadora De Fora da Pampa"+"\n"+AppCor.RESET);
         System.out.println(AppCor.GREEN_BRIGHT + "1.Gerenciar Cliente ") ;
         System.out.println( "2.Gerenciar Locações");
-        System.out.println( "3. ");
-        System.out.println("4. ");
-        System.out.println("5.Relação de todos os Clientes ");
-        System.out.println("6. Relação de todas Locações"); //Em espera
+        System.out.println( "3.Gerenciar Veículos");
+        System.out.println("4.Relação de todos os Clientes ");
+        System.out.println("5.Relação de todas as locações ");
+        System.out.println("6.Relação de todos os veículos "); //Em espera
         System.out.println(AppCor.PURPLE + "0. Sair\n");
         System.out.print( "Informe a opção desejada (0 a 6): "+ AppCor.RESET);
     }
-
-
-
 
 
 }

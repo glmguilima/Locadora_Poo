@@ -1,6 +1,7 @@
-package Locadora;
+package Listas;
 
 import Interfaces.ILocacoes;
+import Locadora.Locacao;
 
 import java.util.ArrayList;
 
@@ -96,8 +97,8 @@ public class ListaLocacoes implements ILocacoes {
 
     @Override
     public String toString() {
-        return "ListaLocacoes{" +
-                "listaLoc=" + listaLoc +
+        return "Lista de Locações {" +
+                "\n listaLoc=" + listaLoc +
                 '}';
     }
 }
