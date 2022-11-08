@@ -9,11 +9,11 @@ import java.util.ArrayList;
  * @author Guilherme Menezes on 20/10/2022
  */
 public class ListaLocacoes implements ILocacoes {
-    public ArrayList<Locacao> listaLoc;
+    public ArrayList<Locacao> listaLocacoes;
 
 
     public ListaLocacoes(){
-        listaLoc = new ArrayList<Locacao>();
+        listaLocacoes = new ArrayList<Locacao>();
     }
 
     @Override
@@ -21,7 +21,7 @@ public class ListaLocacoes implements ILocacoes {
      * método que implementa a locação @param l a uma lista @param listaLoc.
      */
     public void add(Locacao l) {
-        listaLoc.add(l);
+        listaLocacoes.add(l);
     }
 
     @Override
@@ -30,9 +30,9 @@ public class ListaLocacoes implements ILocacoes {
      *
      */
     public  Locacao get(int codigo) {
-        for (int i = 0; i < listaLoc.size() ; i++) {
-            if(listaLoc.get(i).getCodigo() == codigo){
-                return listaLoc.get(i);
+        for (int i = 0; i < listaLocacoes.size() ; i++) {
+            if(listaLocacoes.get(i).getCodigo() == codigo){
+                return listaLocacoes.get(i);
             }
         }
         return null;
@@ -45,9 +45,9 @@ public class ListaLocacoes implements ILocacoes {
      *
      */
     public String getInfo(int codigo) {
-        for (int i = 0; i < listaLoc.size() ; i++) {
-            if(listaLoc.get(i).getCodigo()==codigo){
-                return listaLoc.get(i).toString();
+        for (int i = 0; i < listaLocacoes.size() ; i++) {
+            if(listaLocacoes.get(i).getCodigo()==codigo){
+                return listaLocacoes.get(i).toString();
             }
         }
         return null;
@@ -60,8 +60,8 @@ public class ListaLocacoes implements ILocacoes {
      *
      */
     public String getInfo() {
-        for (int i = 0; i < listaLoc.size() ; i++) {
-            return listaLoc.toString();
+        for (int i = 0; i < listaLocacoes.size() ; i++) {
+            return listaLocacoes.toString();
         }
         return null;
     }
@@ -72,9 +72,9 @@ public class ListaLocacoes implements ILocacoes {
      *
      */
     public boolean remove(int codigo) {
-        for (int i = 0; i < listaLoc.size() ; i++) {
-            if(listaLoc.get(i).getCodigo() == codigo){
-                listaLoc.remove(i);
+        for (int i = 0; i < listaLocacoes.size() ; i++) {
+            if(listaLocacoes.get(i).getCodigo() == codigo){
+                listaLocacoes.remove(i);
                 return true;
             }
         }
@@ -87,8 +87,8 @@ public class ListaLocacoes implements ILocacoes {
      *
      */
     public boolean existe(int codigo) {
-        for (int i = 0; i < listaLoc.size() ; i++) {
-            if(listaLoc.get(i).getCodigo() == codigo){
+        for (int i = 0; i < listaLocacoes.size() ; i++) {
+            if(listaLocacoes.get(i).getCodigo() == codigo){
                 return true;
             }
         }
@@ -98,7 +98,7 @@ public class ListaLocacoes implements ILocacoes {
     @Override
     public String toString() {
         return "Lista de Locações {" +
-                "\n listaLoc=" + listaLoc +
+                "\n listaLoc=" + listaLocacoes +
                 '}';
     }
 }

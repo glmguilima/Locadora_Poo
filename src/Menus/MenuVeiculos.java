@@ -1,5 +1,6 @@
 package Menus;
 
+import Listas.ListaVeiculos;
 import Locadora.Caminhao;
 import Locadora.Carro;
 import Locadora.Onibus;
@@ -12,18 +13,18 @@ import java.util.Scanner;
  * @author glmgu on 06/11/2022
  */
 public class MenuVeiculos {
-    Veiculo veiculo;
-    Carro carrro;
-    Onibus onibus;
-    Caminhao caminhao;
     String placa;
     int op2, ano;
     double diaria;
     Scanner entrada = new Scanner(System.in);
-    MenuLocacoes menuLocacoes =new MenuLocacoes();
+    ListaVeiculos listaV;
+
+
+    public MenuVeiculos(ListaVeiculos listaV){
+        this.listaV=listaV;
+    }
 
     public void menuVeiculos(){
-        menuLocacoes.preCadastroVeiculos();
         int op3;
         do {
             System.out.println("\n" + AppCor.BLUE + "Menu de Gerenciamento de Clientes" + AppCor.RESET + "\n");
@@ -43,9 +44,10 @@ public class MenuVeiculos {
                     buscarVeiculo();
                     break;
                 case 3:
-                    System.out.println( menuLocacoes.listaV.toString());
+                    System.out.println( listaV.toString());
                     break;
-                case 4://falta implementar
+                case 4:
+                    modificaVeiculo();
                     break;
                 case 5:
                     excluirVeiculo();
@@ -63,9 +65,9 @@ public class MenuVeiculos {
         System.out.println("= = = = Adicionar Veículos= = = =  ");
         System.out.println("Informe a placa do cliente");
         placa = entrada.nextLine();
-        if (menuLocacoes.listaV.existe(placa)==true){
+        if (listaV.existe(placa)==true){
             System.out.println("Veiculo já cadastrado.");
-            System.out.println(menuLocacoes.listaV.get(placa));
+            System.out.println(listaV.get(placa));
         }else {
             System.out.println("Selecionar tipo de veiculo");
             System.out.println("1. Carro ; 2. Ônibus 3. Caminhão");
@@ -95,7 +97,7 @@ public class MenuVeiculos {
         System.out.println("Digite o valor da diaria");
         diaria= entrada.nextDouble();
         Carro novoCar = new Carro(placa,ano,diaria);
-        menuLocacoes.listaV.add(novoCar);
+        listaV.add(novoCar);
         System.out.println("veiculo cadastrado");
     }
     public void novoOni(){
@@ -104,7 +106,7 @@ public class MenuVeiculos {
         System.out.println("Digite o valor da diária");
         diaria= entrada.nextDouble();
         Onibus novoO = new Onibus(placa,ano,diaria);
-        menuLocacoes.listaV.add(novoO);
+        listaV.add(novoO);
         System.out.println("veiculo cadastrado");
     }
     public void novoCam(){
@@ -113,14 +115,14 @@ public class MenuVeiculos {
         System.out.println("Digite o valor da diária");
         diaria= entrada.nextDouble();
         Caminhao novoCam = new Caminhao(placa,ano,diaria);
-        menuLocacoes.listaV.add(novoCam);
+        listaV.add(novoCam);
         System.out.println("veiculo cadastrado");
     }
     public void buscarVeiculo(){
         System.out.println("informe a placa do veiculo");
         placa=entrada.nextLine();
-        if (menuLocacoes.listaV.existe(placa)==true){
-            System.out.println(menuLocacoes.listaV.get(placa).toString());
+        if (listaV.existe(placa)==true){
+            System.out.println(listaV.get(placa).toString());
         }
         else {
             System.out.println("Veiculo nao cadastrado");
@@ -129,8 +131,8 @@ public class MenuVeiculos {
     public void excluirVeiculo(){
         System.out.println("informe a placa do veiculo");
         placa=entrada.nextLine();
-        if (menuLocacoes.listaV.existe(placa)==true){
-            menuLocacoes.listaV.remove(placa);
+        if (listaV.existe(placa)==true){
+            listaV.remove(placa);
             System.out.println("veiculo removido");
         }
         else {
@@ -138,5 +140,54 @@ public class MenuVeiculos {
         }
     }
 
+    public void modificaVeiculo(){
+        int opcao = 0;
+        System.out.println("Digite a Placa do veiculo:");
+        placa = entrada.nextLine();
+        if (listaV.existe(placa)==true){
+            System.out.println("O que deseja alterar :");
+            System.out.println("\n" + AppCor.GREEN_BRIGHT+ "1.placa ");
+            System.out.println( "2.Ano");
+            System.out.println("3.Diária");
+            System.out.println(AppCor.PURPLE + "0. Voltar ao menu anterior\n"+AppCor.RESET);
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+            switch(opcao) {
+                case 1:
+                    System.out.println("Informe a Nova placa do veiculo  ");
+                    String placaNova = entrada.nextLine();
+                    listaV.get(placa).setPlaca(placaNova);
+                    System.out.println(AppCor.GREEN+"Placa alterada com sucesso: "+listaV.getInfo(placaNova)+AppCor.RESET);
+                    break;
+                case 2:
+                    System.out.println("Informe o novo Ano do Veículo: ");
+                    int novoAno = entrada.nextInt();
+                    entrada.nextLine();
+                    listaV.get(placa).setAno(novoAno);
+                    System.out.println(AppCor.GREEN+"Ano alterado com sucesso: "+listaV.getInfo(placa)+AppCor.RESET);
+                    break;
+                case 3:
+                    System.out.println("Informe a nova Diária do Veículo: ");
+                    double diariaNova = entrada.nextDouble();
+                    entrada.nextLine();
+                    listaV.get(placa).setValorDiaria(diariaNova);
+                    System.out.println(AppCor.GREEN+"Diária alterada com sucesso: "+listaV.getInfo(placa)+AppCor.RESET);
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    System.out.println("Digite uma opção correta");
+            }
+        }else {
+            System.out.println(AppCor.RED+"O Veiculo não está cadastrado."+AppCor.RESET);
+        }
+    }
+    public void preCadastroVeiculos(){
+        Carro car1 = new Carro("aaa1111",2022,30);
+        Carro car2 = new Carro("aaa3333",2021,20);
+        Carro car3 = new Carro("aaa2222",2020,10);
+        listaV.listaVeiculo.add(car1);
+        listaV.listaVeiculo.add(car2);
+        listaV.listaVeiculo.add(car3);
+    }
 
 }

@@ -1,8 +1,8 @@
 package Menus;
 
+import Listas.ListaClientes;
 import Listas.ListaLocacoes;
 import Listas.ListaVeiculos;
-import Locadora.Carro;
 import Locadora.Locacao;
 import Utils.AppCor;
 
@@ -15,21 +15,27 @@ public class MenuLocacoes {
     long CPF;
     Scanner entrada = new Scanner(System.in);
     int op3;
-    ListaVeiculos listaV =new ListaVeiculos();
-    MenuCliente menuCliente= new MenuCliente();
-    ListaLocacoes listaLocacoes = new ListaLocacoes();
+    MenuCliente menuCliente;
+    ListaVeiculos listaV;
+    ListaLocacoes listaLoc;
+    ListaClientes listaC;
+
+    public MenuLocacoes(ListaLocacoes listaLoc, ListaClientes listaC,ListaVeiculos listaV){
+        this.listaLoc=listaLoc;
+        this.listaC=listaC;
+        this.listaV=listaV;
+    }
 
 
 
     public void menuLocacoes() {
-        menuCliente.preCadastros();
         do {
-            System.out.println("\n" + AppCor.BLUE + "Menu de Gerenciamento de LocaÁıes" + AppCor.RESET + "\n");
-            System.out.println(AppCor.GREEN_BRIGHT+ "1. Adiconar locaÁoes");
-            System.out.println("2. Buscar locaÁıes");
-            System.out.println("3. RelaÁ„o de todas locaÁıes ");
-            System.out.println("4. Modificar informaÁıes de locaÁıes");
-            System.out.println(AppCor.RED + "5. Excluir locaÁ„o" + AppCor.RESET);
+            System.out.println("\n" + AppCor.BLUE + "Menu de Gerenciamento de Loca√ß√µes" + AppCor.RESET + "\n");
+            System.out.println(AppCor.GREEN_BRIGHT+ "1. Adiconar loca√ßoes");
+            System.out.println("2. Buscar loca√ß√µes");
+            System.out.println("3. Rela√ß√£o de todas loca√ß√µes ");
+            System.out.println("4. Modificar informa√ß√µes de loca√ß√µes");
+            System.out.println(AppCor.RED + "5. Excluir loca√ß√£o" + AppCor.RESET);
             System.out.println(AppCor.PURPLE + "0. Sair\n"+AppCor.RESET);
             op3 = entrada.nextInt();
             entrada.nextLine();
@@ -50,33 +56,34 @@ public class MenuLocacoes {
                     excluirLocacao();
                     break;
                 default:
-                    System.out.println("OpÁ„o inv·lida");
-                    System.out.println("digite uma opÁ„o correta");
+                    System.out.println("Op√ß√£o inv√°lida");
+                    System.out.println("digite uma op√ß√£o correta");
             }
         } while(op3!=0);
     }
 
     public void addLocacao(){
-        System.out.println("= = = = Adicionar LocaÁıes= = = =  ");
+        System.out.println("= = = = Adicionar Loca√ß√µes= = = =  ");
         System.out.println("Informe o CPF do cliente");
         CPF = entrada.nextLong();
         entrada.nextLine();
-        if (menuCliente.listaC.existe(CPF)){
+        if (listaC.existe(CPF)){
+            System.out.println(AppCor.GREEN_BRIGHT+"O cliente que ir√° alugar √©: "+listaC.get(CPF).getNome()+AppCor.RESET);
             System.out.println(listaV.getInfo());
             System.out.println("\n Informe a Placa do veiculo desejado");
             String placa = entrada.nextLine();
             if(listaV.existe(placa)==false){
-                System.out.println(AppCor.RED+" O veiculo n„o encontrado"+AppCor.RESET);
+                System.out.println(AppCor.RED+" O veiculo n√£o encontrado"+AppCor.RESET);
                 addLocacao();
             }else {
                 System.out.println("Digite a data de Hoje no formato: dd/mm/yyyy");
                 String dataInicial = entrada.nextLine();
                 System.out.println("Digite a data de encerramento no formato: dd/mm/yyyy");
                 String dataFinal = entrada.nextLine();
-                Locacao nova = new Locacao(menuCliente.listaC.get(CPF), listaV.get(placa), false, dataInicial, dataFinal);
-                listaLocacoes.listaLoc.add(nova);
+                Locacao nova = new Locacao(listaC.get(CPF), listaV.get(placa), false, dataInicial, dataFinal);
+                listaLoc.add(nova);
                 listaV.remove(placa); // Remove o veiculo da lista de veiculo disponivel
-                System.out.println("Gostaria de acionar o seguro? (1) Sim e (2) N„o");
+                System.out.println("Gostaria de acionar o seguro? (1) Sim e (2) N√£o");
                 int seg = entrada.nextInt();
                 if (seg == 1) {
                     nova.setSeguro(true);
@@ -85,52 +92,52 @@ public class MenuLocacoes {
                 System.out.println(nova.toString());
             }
         }else {
-            System.out.println(AppCor.RED+"Cliente n„o cadastrado"+AppCor.RESET);
+            System.out.println(AppCor.RED+"Cliente n√£o cadastrado"+AppCor.RESET);
         }
     }
     public void buscaLocacao() {
-        System.out.println("= = = = Bem vindo a  busca de LocaÁ„o = = = = ");
-        System.out.println("Digite o CÛdigo da LocaÁ„o");
+        System.out.println("= = = = Bem vindo a  busca de Loca√ß√£o = = = = ");
+        System.out.println("Digite o C√≥digo da Loca√ß√£o");
         int cod = entrada.nextInt();
-        if (listaLocacoes.existe(cod)==true){
-            System.out.println(AppCor.GREEN_BRIGHT+"LocaÁ„o encontrado");
-            System.out.println(listaLocacoes.get(cod)+AppCor.RESET);
+        if (listaLoc.existe(cod)==true){
+            System.out.println(AppCor.GREEN_BRIGHT+"Loca√ß√£o encontrado");
+            System.out.println(listaLoc.get(cod)+AppCor.RESET);
         }else {
-            System.out.println(AppCor.RED+"LocaÁ„o n„o est· cadastrada."+AppCor.RESET);
+            System.out.println(AppCor.RED+"Loca√ß√£o n√£o est√° cadastrada."+AppCor.RESET);
         }
     }
 
     public void allLoc(){
-        System.out.println("= = = = Abaixo segue todos LocaÁıes = = = = ");
-        if (listaLocacoes.listaLoc.size()==0){
-            System.out.println(AppCor.RED + "N„o h· locaÁıes cadastradas."+AppCor.RESET);
+        System.out.println("= = = = Abaixo segue todos Loca√ß√µes = = = = ");
+        if (listaLoc.listaLocacoes.size()==0){
+            System.out.println(AppCor.RED + "N√£o h√° loca√ß√µes cadastradas."+AppCor.RESET);
         }else{
-            System.out.println(AppCor.GREEN+listaLocacoes.getInfo().toString()+AppCor.RESET);}
+            System.out.println(AppCor.GREEN+listaLoc.getInfo().toString()+AppCor.RESET);}
     }
 
     public void excluirLocacao() {
-        System.out.println("Informe o CÛdigo da LocaÁ„o: ");
+        System.out.println("Informe o C√≥digo da Loca√ß√£o: ");
         int cod = entrada.nextInt();
-        if (listaLocacoes.existe(cod)==true) {
-            System.out.println(AppCor.GREEN_BRIGHT+"LocaÁ„o Encontrada");
-            listaLocacoes.listaLoc.remove(listaLocacoes.get(cod));
+        if (listaLoc.existe(cod)==true) {
+            System.out.println(AppCor.GREEN_BRIGHT+"Loca√ß√£o Encontrada");
+            listaLoc.remove(cod);
         }else {
-            System.out.println(AppCor.RED+"LocaÁ„o n„o est· cadastrada."+AppCor.RESET);
+            System.out.println(AppCor.RED+"Loca√ß√£o n√£o est√° cadastrada."+AppCor.RESET);
         }
     }
 
     public void modificarLocacao() {
     	int opcao = 0;
-        System.out.println("Segues a lista de locaÁıes em aberto");
-        if (listaLocacoes.listaLoc.size()==0){
-            System.out.println("Lista vazia, n„o h· locaÁıes");
+        System.out.println("Segues a lista de loca√ß√µes em aberto");
+        if (listaLoc.listaLocacoes.size()==0){
+            System.out.println("Lista vazia, n√£o h√° loca√ß√µes");
         }else{
-            System.out.println(listaLocacoes.toString());
-            System.out.println("Informe o CÛdigo de LocaÁ„o: ");
+            System.out.println(toString());
+            System.out.println("Informe o C√≥digo de Loca√ß√£o: ");
             int cod = entrada.nextInt();
             entrada.nextLine();
-            if(listaLocacoes.existe(cod)==true) {
-                System.out.println(AppCor.GREEN_BRIGHT + "LocaÁ„o Encontrada \n");
+            if(listaLoc.existe(cod)==true) {
+                System.out.println(AppCor.GREEN_BRIGHT + "Loca√ß√£o Encontrada \n");
                 System.out.println("O que deseja alterar: ");
                 System.out.println("1. Seguro: ");
                 System.out.println("2. Cliente: ");
@@ -138,16 +145,16 @@ public class MenuLocacoes {
                 entrada.nextLine();
                 switch (opcao) {
                     case 1:
-                        System.out.println("Deseja obter seguro: 1 - Sim | 2 - N„o");
+                        System.out.println("Deseja obter seguro: 1 - Sim | 2 - N√£o");
                         int seguro = entrada.nextInt();
                         entrada.nextLine();
                         if (seguro == 1) {
-                            listaLocacoes.get(cod).setSeguro(true);
+                            listaLoc.get(cod).setSeguro(true);
                         }
                         if (seguro == 0) {
-                            listaLocacoes.get(cod).setSeguro(false);
+                            listaLoc.get(cod).setSeguro(false);
                         } else {
-                            System.out.println("OpÁ„o Inv·lida.");
+                            System.out.println("Op√ß√£o Inv√°lida.");
                             break;
                         }
 
@@ -155,11 +162,11 @@ public class MenuLocacoes {
                         System.out.println("Informe o CPF do novo cliente: ");
                         long novoCPF = entrada.nextLong();
                         entrada.nextLine();
-                        if (menuCliente.listaC.existe(novoCPF) == false) {
-                            System.out.println(AppCor.RED + " O Cliente n„o encontrado" + AppCor.RESET);
+                        if (listaC.existe(novoCPF) == false) {
+                            System.out.println(AppCor.RED + " O Cliente n√£o encontrado" + AppCor.RESET);
                             addLocacao();
                         } else {
-                            listaLocacoes.get(cod).setSeguro(true);
+                            listaLoc.get(cod).setSeguro(true);
                             System.out.println("Cliente da Locacao Alterado com Sucesso!!");
                             break;
                         }
@@ -169,10 +176,10 @@ public class MenuLocacoes {
                         System.out.println("\n Informe a Placa do veiculo desejado"); // tem que fazer um tratamneto de veiculo locado
                         String novaPlaca = entrada.nextLine();
                         if (listaV.existe(novaPlaca) == false) {
-                            System.out.println(AppCor.RED + " O veiculo n„o encontrado" + AppCor.RESET);
+                            System.out.println(AppCor.RED + " O veiculo n√£o encontrado" + AppCor.RESET);
                         } else {
 
-                            // listaLocacoes.get(cod).setVeiculo(listaV.get(novaPlaca));
+                            // get(cod).setVeiculo(listaV.get(novaPlaca));
                             System.out.println("Veiculo da Locacao Alterado com Sucesso!!");
                             break;
 
@@ -181,7 +188,7 @@ public class MenuLocacoes {
                         System.out.println("Informe a nova data de Inicio");
                         String novaDataI = entrada.nextLine();
 
-                        // listaLocacoes.get(cod).setDataInicial(novaDataI);
+                        // get(cod).setDataInicial(novaDataI);
                         System.out.println("Data inicial da Locacao Alterada com Sucesso!!");
                         break;
 
@@ -189,23 +196,19 @@ public class MenuLocacoes {
                         System.out.println("Informe a nova data final:");
                         String novaDataF = entrada.nextLine();
 
-                        //listaLocacoes.get(cod).setDataFinal(novaDataF);
+                        //get(cod).setDataFinal(novaDataF);
                         System.out.println("Data Final da Locacao Alterado com Sucesso!!");
                         break;
+                    default:
+                        System.out.println("Op√ß√£o inv√°lida");
+                        System.out.println("digite uma op√ß√£o correta");
                 }
             }
             else {
-                System.out.println(AppCor.RED+"LocaÁ„o n„o est· cadastrada."+AppCor.RESET);
+                System.out.println(AppCor.RED+"Loca√ß√£o n√£o est√° cadastrada."+AppCor.RESET);
             }
         }
     }
-    public void preCadastroVeiculos(){
-        Carro car1 = new Carro("aaa1111",2022,30);
-        Carro car2 = new Carro("aaa3333",2021,20);
-        Carro car3 = new Carro("aaa2222",2020,10);
-        listaV.listaVeiculo.add(car1);
-        listaV.listaVeiculo.add(car2);
-        listaV.listaVeiculo.add(car3);
-    }
+
 
 }

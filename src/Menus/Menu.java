@@ -1,5 +1,8 @@
 package Menus;
 
+import Listas.ListaClientes;
+import Listas.ListaLocacoes;
+import Listas.ListaVeiculos;
 import Utils.AppCor;
 
 import java.util.Scanner;
@@ -11,13 +14,18 @@ public class Menu {
     long CPF;
     Scanner entrada = new Scanner(System.in);
     int op;
-    MenuVeiculos menuVeiculos = new MenuVeiculos();
-    MenuCliente menuCliente = new MenuCliente();
-    MenuLocacoes menuLocacoes = new MenuLocacoes();
+
+    ListaClientes listaClientes = new ListaClientes();
+    ListaLocacoes listaLocacoes = new ListaLocacoes();
+    ListaVeiculos listaVeiculos = new ListaVeiculos();
+    MenuVeiculos menuVeiculos = new MenuVeiculos(listaVeiculos);
+    MenuCliente menuCliente =new MenuCliente(listaClientes);
+    MenuLocacoes menuLocacoes = new MenuLocacoes(listaLocacoes,listaClientes,listaVeiculos);
+
     public void iniciarMenu(){
 
         menuCliente.preCadastros();
-        menuLocacoes.preCadastroVeiculos();
+        menuVeiculos.preCadastroVeiculos();
         do{
             telaInicial();
             op = entrada.nextInt();
@@ -33,13 +41,14 @@ public class Menu {
                     menuVeiculos.menuVeiculos();
                     break;
                 case 4:
-                    System.out.println(menuCliente.listaC.toString());
+
+                    System.out.println(menuCliente.listaC.getResumoInfo());
                     break;
                 case 5:
-                    System.out.println(menuLocacoes.listaLocacoes.toString());
+                    System.out.println(menuLocacoes.listaLoc.toString());
                     break;
                 case 6:
-                    System.out.println( menuLocacoes.listaV.toString());
+                    System.out.println( menuVeiculos.listaV.toString());
                     break;
                 case 0: break;
                 default:

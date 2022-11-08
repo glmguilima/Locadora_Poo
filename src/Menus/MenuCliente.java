@@ -15,7 +15,11 @@ public class MenuCliente {
     long CPF;
     int numCNH,telefone;
     Scanner entrada = new Scanner(System.in);
-    ListaClientes listaC = new ListaClientes();
+    ListaClientes listaC ;
+
+    public MenuCliente(ListaClientes listaC){
+        this.listaC = listaC;
+    }
 
     public void menuCliente(){
         int op2;
@@ -120,12 +124,12 @@ public class MenuCliente {
         entrada.nextLine();
         if(listaC.existe(CPF)==true) {
             System.out.println("O que deseja alterar :");
-            System.out.println("\n" + AppCor.GREEN_BRIGHT+ "1.Nome "+"\n");
+            System.out.println(AppCor.GREEN_BRIGHT+ "1.Nome ");
             System.out.println( "2.CPF");
             System.out.println("3.CNH ");
             System.out.println("4.Endereço");
-            System.out.println("4.Telefone"); // falta implementar.
-            System.out.println(AppCor.PURPLE + "0. Voltar ao menu anterior\n"+AppCor.RESET);
+            System.out.println("5.Telefone");
+            System.out.println(AppCor.PURPLE + "0. Voltar ao menu anterior"+AppCor.RESET);
             opcao = entrada.nextInt();
             entrada.nextLine();
             switch(opcao) {
@@ -134,36 +138,37 @@ public class MenuCliente {
                     String nome = entrada.nextLine();
                     listaC.get(CPF).setNome(nome);
                     System.out.println("Nome alterado com sucesso: "+listaC.get(CPF).getNome());
-
+                    break;
                 case 2:
                     System.out.println("Informe o novo CPF do Cliente: ");
                     Long novoCPF = entrada.nextLong();
                     entrada.nextLine();
                     listaC.get(CPF).setCPF(novoCPF);
                     System.out.println("CPF alterado com sucesso: "+listaC.get(novoCPF));
-
+                    break;
                 case 3:
                     System.out.println("Informe a nova CNH do Cliente: ");
                     int numCNH = entrada.nextInt();
                     entrada.nextLine();
                     listaC.get(CPF).setNumCNH(numCNH);
                     System.out.println("CNH alterada com sucesso: "+listaC.get(numCNH));
-
-
+                    break;
                 case 4:
                     System.out.println("Informe o novo Endereço do Cliente: ");
                     String endereco = entrada.nextLine();
                     listaC.get(CPF).setEndereco(endereco);
                     System.out.println("Endereço alterado com sucesso: "+listaC.get(CPF).getEndereco());
-
+                    break;
                 case 5:
                     System.out.println("Informe o novo Telefone do Cliente: ");
                     int telefone = entrada.nextInt();
                     entrada.nextLine();
                     listaC.get(CPF).setTelefone(telefone);
                     System.out.println("Telefone alterado com sucesso: "+listaC.get(CPF).getTelefone());
-
-
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    System.out.println("Digite uma opção correta");
             }
         }else {
             System.out.println(AppCor.RED+"O cliente não está cadastrado."+AppCor.RESET);
