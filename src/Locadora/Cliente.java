@@ -1,5 +1,8 @@
 package Locadora;
 
+
+import Exceptions.MinhaExcecoes;
+
 /**
  * @author glmgu on 13/10/2022
  */
@@ -9,9 +12,13 @@ public  class Cliente {
     private   int numCNH, telefone;
 
 
-    public Cliente(String nome,long CPF, int numCNH,String endereco,int telefone){
+    public Cliente(String nome,long CPF, int numCNH,String endereco,int telefone)
+            throws MinhaExcecoes {
         this.nome=nome;
-        this.CPF=CPF;
+        if (String.valueOf(CPF).length() == 9) {
+            this.CPF = CPF;
+        } else
+            throw new MinhaExcecoes("O CPF precisa conter 9 digitos!");
         this.numCNH=numCNH;
         this.endereco=endereco;
         this.telefone=telefone;

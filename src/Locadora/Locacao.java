@@ -82,4 +82,6 @@ public class Locacao {
         Calendar calendar = Calendar.getInstance();
         System.out.println(formatter.format(calendar.getTime()));
     }
+
+
 }

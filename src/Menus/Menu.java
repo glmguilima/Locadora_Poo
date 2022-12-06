@@ -1,5 +1,6 @@
 package Menus;
 
+import Exceptions.MinhaExcecoes;
 import Listas.ListaClientes;
 import Listas.ListaLocacoes;
 import Listas.ListaVeiculos;
@@ -22,7 +23,7 @@ public class Menu {
     MenuCliente menuCliente =new MenuCliente(listaClientes);
     MenuLocacoes menuLocacoes = new MenuLocacoes(listaLocacoes,listaClientes,listaVeiculos);
 
-    public void iniciarMenu(){
+    public void iniciarMenu() throws MinhaExcecoes {
 
         menuCliente.preCadastros();
         menuVeiculos.preCadastroVeiculos();
