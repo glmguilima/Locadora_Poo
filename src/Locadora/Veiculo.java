@@ -3,7 +3,7 @@ package Locadora;
 /**
  * @author glmgu on 13/10/2022
  */
-public abstract class Veiculo {
+public class Veiculo {
     private String placa;
     private int ano;
     private double diaria;

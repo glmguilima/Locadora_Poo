@@ -75,7 +75,10 @@ public class GuiClientes extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 CPF = Long.valueOf(textCPF.getText());
                 if (listaC.existe(CPF)==true){
-                    listaC.remove(CPF);
+                   int a = JOptionPane.showConfirmDialog(null,"Deseja Excluir o cliente "+listaC.getInfo(CPF),"Confirmação",JOptionPane.OK_OPTION);
+                   if (a==0){
+                       listaC.remove(CPF);
+                   }
                 }else {
                     JOptionPane.showMessageDialog(null,"Cliente não Cadastrado","info",JOptionPane.INFORMATION_MESSAGE);
                 }

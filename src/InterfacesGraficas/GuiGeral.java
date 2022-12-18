@@ -12,9 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * @author glmgu on 03/12/2022
- */
+
 public class GuiGeral extends Frame {
     private static IClientes listaC;
     private JPanel menuInicial;
@@ -86,18 +84,18 @@ public class GuiGeral extends Frame {
         this.listaVeiculos = listaVeiculos;
     }
 
-    public GuiGeral(){
+    public GuiGeral() {
 
         final JFrame frame = new JFrame("Locadora Defora da Pampa");
         JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
-        panel.setLayout(new GridLayout(0,1));
-        frame.add(panel,BorderLayout.CENTER);
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        panel.setLayout(new GridLayout(0, 1));
+        frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Locadora de Fora da Pampa");
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(400,300);
+        frame.setSize(400, 300);
         frame.setContentPane(menuInicial);
 
         clientesButton1.addActionListener(new ActionListener() {
@@ -110,13 +108,17 @@ public class GuiGeral extends Frame {
         locaçõesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // new GuiCadastroCliente(listaClientes);
+
+            }
+        });
+
+
+        veiculosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GuiVeiculos(listaVeiculos);
                 setVisible(false);
             }
         });
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
