@@ -65,6 +65,16 @@ public GuiVeiculos(ListaVeiculos listaV) {
     excluirVeículoButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            placa = textPlaca.getText();
+                if (listaV.existe(placa)==true){
+                   int a = JOptionPane.showConfirmDialog(null,"Deseja Excluir o Veículo "+listaV.getInfo(placa),"Confirmação",JOptionPane.OK_OPTION);
+                   if (a==0){
+                       listaC.remove(placa);
+                   }
+                }else {
+                    JOptionPane.showMessageDialog(null,"Veículo não Cadastrado","info",JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         }
     });
     voltarAoMenuInicialButton.addActionListener(new ActionListener() {

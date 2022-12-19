@@ -44,7 +44,20 @@ public class GuiCadastroCarro extends JFrame {
                 ano= Integer.parseInt(textAno.getText());
                 diaria= Double.parseDouble(textDiaria.getText());
                 mediaKM = Double.parseDouble(textMedia.getText());
-                carro = new Carro(placa,ano,diaria);
+                if (listaV.existe()==false){
+                    try {
+                        
+                        carro = new Carro(placa,ano,diaria);
+                        listaV.listaVeiculo.add(carro);        
+                    } catch (MinhaExcecoes ex) {
+                        ex.printStackTrace();
+                    }
+                    JOptionPane.showMessageDialog(null,"Veículo Cadastrado com sucesso"+ listaV.get(placa),"Cadastro de Veiculo",JOptionPane.INFORMATION_MESSAGE);
+                    limparCampos();
+                }else{
+                    JOptionPane.showMessageDialog(null,"Veiculo já consta no  cadastro"+ listaV.get(placa),"Veículo Encontrado",JOptionPane.INFORMATION_MESSAGE);
+                }
+                        
                 if(comboBoxPortas.getSelectedIndex()==0) {
                     JOptionPane.showMessageDialog(null, "Selecione o número de portas");
                 }else{
@@ -57,7 +70,7 @@ public class GuiCadastroCarro extends JFrame {
                     }
                 }
                 if(comboBoxArCond.getSelectedIndex()==0) {
-                    JOptionPane.showMessageDialog(null,"Selecione uma oção de ar condicionado");
+                    JOptionPane.showMessageDialog(null,"Selecione uma opção de ar condicionado");
                 }else
                 if(comboBoxArCond.getSelectedIndex()==1){
                     arCondicionado = true;
@@ -67,9 +80,6 @@ public class GuiCadastroCarro extends JFrame {
                     carro.setArCondicionado(false);
                 }
 
-               // carro.setNumPortas(5);
-                //carro.setArCondicionado(true);
-                listaV.listaVeiculo.add(carro);
                 limpaCampos();
             }
 
