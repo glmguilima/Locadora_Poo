@@ -1,5 +1,6 @@
 package InterfacesGraficas;
 
+import Exceptions.MinhaExcecoes;
 import Listas.ListaVeiculos;
 import Locadora.Carro;
 import Locadora.Veiculo;
@@ -29,12 +30,13 @@ public class GuiCadastroCarro extends JFrame {
     private JComboBox comboBoxPortas;
     private JComboBox comboBoxArCond;
     private JButton voltarMenuINI;
-
+    ListaVeiculos listaV;
 
     public GuiCadastroCarro(ListaVeiculos listaV) {
-    setContentPane(cadastroVeiculos);
-    setVisible(true);
-    setSize(800,600);
+        this.listaV=listaV;
+        setContentPane(cadastroVeiculos);
+        setVisible(true);
+        setSize(800,600);
 
 
         salvarButton.addActionListener(new ActionListener() {
@@ -44,43 +46,39 @@ public class GuiCadastroCarro extends JFrame {
                 ano= Integer.parseInt(textAno.getText());
                 diaria= Double.parseDouble(textDiaria.getText());
                 mediaKM = Double.parseDouble(textMedia.getText());
-                if (listaV.existe()==false){
-                    try {
-                        
+                if (listaV.existe(placa)==false){
+                    if (comboBoxPortas.getSelectedIndex()==0||comboBoxArCond.getSelectedIndex()==0) {
+                        JOptionPane.showMessageDialog(null, "Selecione os campos obrigatórios");
+                    }else{
                         carro = new Carro(placa,ano,diaria);
-                        listaV.listaVeiculo.add(carro);        
-                    } catch (MinhaExcecoes ex) {
-                        ex.printStackTrace();
+                        listaV.listaVeiculo.add(carro);
+                        carro.setMediaKM(mediaKM);
+
+                        if(comboBoxPortas.getSelectedIndex()==2){
+                            numPortas=5 ;
+                            carro.setNumPortas(numPortas);
+                        } else {
+                            numPortas=3 ;
+                            carro.setNumPortas(numPortas);
+                        }
+
+                        if (comboBoxArCond.getSelectedIndex()==1){
+                            arCondicionado = true;
+                            carro.setArCondicionado(true);
+                        }
+                        else {
+                            arCondicionado = false;
+                            carro.setArCondicionado(false);
+
+                        }
+                        JOptionPane.showMessageDialog(null,"Veículo Cadastrado com sucesso"+ listaV.get(placa),"Cadastro de Veiculo",JOptionPane.INFORMATION_MESSAGE);
+                        limpaCampos();
                     }
-                    JOptionPane.showMessageDialog(null,"Veículo Cadastrado com sucesso"+ listaV.get(placa),"Cadastro de Veiculo",JOptionPane.INFORMATION_MESSAGE);
-                    limparCampos();
-                }else{
+                }
+                else{
                     JOptionPane.showMessageDialog(null,"Veiculo já consta no  cadastro"+ listaV.get(placa),"Veículo Encontrado",JOptionPane.INFORMATION_MESSAGE);
                 }
-                        
-                if(comboBoxPortas.getSelectedIndex()==0) {
-                    JOptionPane.showMessageDialog(null, "Selecione o número de portas");
-                }else{
-                if (comboBoxPortas.getSelectedIndex()==2) {
-                    numPortas=5 ;
-                    carro.setNumPortas(numPortas);
-                } else {
-                    numPortas = 3;
-                    carro.setNumPortas(numPortas);
-                    }
-                }
-                if(comboBoxArCond.getSelectedIndex()==0) {
-                    JOptionPane.showMessageDialog(null,"Selecione uma opção de ar condicionado");
-                }else
-                if(comboBoxArCond.getSelectedIndex()==1){
-                    arCondicionado = true;
-                    carro.setArCondicionado(true);
-                }else {
-                    arCondicionado = false;
-                    carro.setArCondicionado(false);
-                }
 
-                limpaCampos();
             }
 
         });
@@ -106,7 +104,6 @@ public class GuiCadastroCarro extends JFrame {
         textMedia.setText("");
         comboBoxPortas.setSelectedIndex(0);
         comboBoxArCond.setSelectedIndex(0);
-
 
     }
 }

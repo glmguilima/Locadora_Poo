@@ -1,6 +1,7 @@
 package InterfacesGraficas;
 
 import Listas.ListaVeiculos;
+import Locadora.Carro;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -8,9 +9,6 @@ import java.awt.event.ActionListener;
 
 public class GuiVeiculos extends JFrame  {
     String placa;
-    int op2, ano;
-    double diaria;
-    ListaVeiculos listaV;
     private JPanel MenuVeiculos;
     private JButton voltarAoMenuInicialButton;
     private JButton modificarVeículoButton;
@@ -20,9 +18,13 @@ public class GuiVeiculos extends JFrame  {
     private JButton excluirVeículoButton;
     private JTextField textPlaca;
     private JButton adicionarÔnibusButton;
-    private JButton adicionarCaminhãoButton;
-    GuiGeral getMenuInicial;
+    private JButton adicionarCaminhaoButton;
+    ListaVeiculos listaV;
+
+
 public GuiVeiculos(ListaVeiculos listaV) {
+    this.listaV = listaV;
+
     setContentPane(MenuVeiculos);
     setVisible(true);
     setSize(500,300);
@@ -69,13 +71,13 @@ public GuiVeiculos(ListaVeiculos listaV) {
                 if (listaV.existe(placa)==true){
                    int a = JOptionPane.showConfirmDialog(null,"Deseja Excluir o Veículo "+listaV.getInfo(placa),"Confirmação",JOptionPane.OK_OPTION);
                    if (a==0){
-                       listaC.remove(placa);
+                       listaV.remove(placa);
                    }
                 }else {
                     JOptionPane.showMessageDialog(null,"Veículo não Cadastrado","info",JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-        }
+
     });
     voltarAoMenuInicialButton.addActionListener(new ActionListener() {
         @Override
@@ -86,16 +88,22 @@ public GuiVeiculos(ListaVeiculos listaV) {
     adicionarÔnibusButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            setVisible(false);
+            new GuiCadastroOnibus(listaV);
         }
     });
-    adicionarCaminhãoButton.addActionListener(new ActionListener() {
+
+    adicionarCaminhaoButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            new GuiCadastroCaminhao(listaV);
+            setVisible(false);
         }
     });
+
+
 }
+
 
 
 }

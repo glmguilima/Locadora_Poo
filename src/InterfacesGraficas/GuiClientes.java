@@ -37,7 +37,7 @@ public class GuiClientes extends JFrame {
         pesquisarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CPF = Long.valueOf(textCPF.getText()); // Aqui ele pega o conteúdo de busca
+                CPF = Long.valueOf(textCPF.getText());
                 if (listaC.existe(CPF)==true){
                     System.out.println("Cliente encontrado");
                     JOptionPane.showMessageDialog(null,listaC.get(CPF),"info",JOptionPane.INFORMATION_MESSAGE);
@@ -67,7 +67,8 @@ public class GuiClientes extends JFrame {
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new GuiEditarCliente(listaC,Long.valueOf(textCPF.getText()));
+                setVisible(false);
             }
         });
         excluirButton.addActionListener(new ActionListener() {

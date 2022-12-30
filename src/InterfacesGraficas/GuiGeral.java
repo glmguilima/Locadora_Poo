@@ -108,7 +108,8 @@ public class GuiGeral extends Frame {
         locaçõesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                GuiLocacoes guiLocacoes = new GuiLocacoes(listaLocacoes, listaClientes,listaVeiculos);
+                setVisible(false);
             }
         });
 
