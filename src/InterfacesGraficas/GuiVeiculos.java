@@ -1,7 +1,6 @@
 package InterfacesGraficas;
 
 import Listas.ListaVeiculos;
-import Locadora.Carro;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -53,6 +52,7 @@ public GuiVeiculos(ListaVeiculos listaV) {
                 JOptionPane.showMessageDialog(null,"Não Há Veículos cadastrados","Lista de todos os Clientes",JOptionPane.INFORMATION_MESSAGE);
             }else
                 JOptionPane.showMessageDialog(null,listaV.getInfo(),"Lista de todos os Clientes",JOptionPane.INFORMATION_MESSAGE);
+
         }
 
     });

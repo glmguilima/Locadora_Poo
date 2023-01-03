@@ -3,7 +3,6 @@ package InterfacesGraficas;
 import Listas.ListaClientes;
 import Listas.ListaLocacoes;
 import Listas.ListaVeiculos;
-import Locadora.Locacao;
 import Utils.AppCor;
 
 import javax.swing.*;
@@ -16,13 +15,15 @@ public class GuiLocacoes extends JFrame{
     private JButton relaçãoDeTodasAsButton;
     private JButton buttonBuscaLocacoes;
     private JButton buttonAddLocacao;
-    private JButton modificarInformaçõesDeLocaçãoButton;
+
     private JButton voltarAoMenuInicialButton;
+    private JTextField textCodLoc;
     ListaVeiculos listaV;
     ListaLocacoes listaLoc;
     ListaClientes listaC;
     String placa;
     Long CPF;
+    int cod;
 public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos listaV) {
     this.listaLoc=listaLoc;
     this.listaC=listaC;
@@ -37,45 +38,70 @@ public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos l
     buttonAddLocacao.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+           new GuiLocacacoesAdd(listaC, listaV,listaLoc);
+            setVisible(false);
 
         }
     });
     buttonBuscaLocacoes.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+           cod = Integer.parseInt(textCodLoc.getText());
+            buscarLoc();
+            if (buscarLoc()==1){
+                JOptionPane.showMessageDialog(null,listaLoc.getInfo(cod),"Informação de locação",JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                JOptionPane.showMessageDialog(null,"Locação NÂO encotrada, verique em todas as locações o código correto","Informação de locação",JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     });
-    relaçãoDeTodasAsButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
 
-        }
-    });
-    modificarInformaçõesDeLocaçãoButton.addActionListener(new ActionListener() {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    });
 
     voltarAoMenuInicialButton.addActionListener(new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            dispose();
         }
     });
     excluirLocaçãoButton.addActionListener(new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            cod = Integer.parseInt(textCodLoc.getText());
+            if (buscarLoc()==1){
+                int a = JOptionPane.showConfirmDialog(null,"Deseja Excluir A Locação "+listaLoc.getInfo(cod),"Confirmação",JOptionPane.OK_OPTION);
+                if (a==0){
+                    listaLoc.remove(cod);
+                    textCodLoc.setText("");
+                }
+            }else {
+                JOptionPane.showMessageDialog(null,"Locação não Cadastrado","info",JOptionPane.INFORMATION_MESSAGE);
+            }
 
+
+        }
+    });
+    relaçãoDeTodasAsButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(listaLoc.listaLocacoes.size()==0){
+                JOptionPane.showMessageDialog(null,"Não Há locações cadastrados","Lista de todos as Locações",JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                JOptionPane.showMessageDialog(null, listaLoc.getInfo(), "Lista de todos os Locações", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     });
 }
 
+    public int buscarLoc(){
+        int cod = Integer.parseInt(textCodLoc.getText());
+        if (listaLoc.existe(cod)) {
+            return 1;
+        }else
+            System.out.println(AppCor.RED+"Locação não está cadastrada."+AppCor.RESET);
+            return 0;
+    }
 
 }

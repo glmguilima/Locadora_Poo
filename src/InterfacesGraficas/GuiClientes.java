@@ -29,6 +29,7 @@ public class GuiClientes extends JFrame {
 
 
     public GuiClientes(final ListaClientes listaC) {
+        this.listaC = listaC;
         setContentPane(painelClientes);
         setVisible(true);
         setSize(400,300);
@@ -37,14 +38,7 @@ public class GuiClientes extends JFrame {
         pesquisarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CPF = Long.valueOf(textCPF.getText());
-                if (listaC.existe(CPF)==true){
-                    System.out.println("Cliente encontrado");
-                    JOptionPane.showMessageDialog(null,listaC.get(CPF),"info",JOptionPane.INFORMATION_MESSAGE);
-                }else {
-                    JOptionPane.showMessageDialog(null,"Cliente não Cadastrado","info",JOptionPane.INFORMATION_MESSAGE);
-                    System.out.println("O cliente não está cadastrado.");
-                }
+               pesquisarClientes();
             }
         });
         listarTodosOsClientesButton.addActionListener(new ActionListener() {
@@ -91,6 +85,17 @@ public class GuiClientes extends JFrame {
                 setVisible(false);
             }
         });
+
+    }
+    public void pesquisarClientes() {
+        CPF = Long.valueOf(textCPF.getText());
+        if (listaC.existe(CPF) == true) {
+
+            JOptionPane.showMessageDialog(null, listaC.get(CPF), "info", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Cliente não Cadastrado", "info", JOptionPane.INFORMATION_MESSAGE);
+
+        }
     }
 }
 

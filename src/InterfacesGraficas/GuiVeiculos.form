@@ -68,20 +68,12 @@
           <text value="Adicionar Caminhão"/>
         </properties>
       </component>
-      <component id="7ce3c" class="javax.swing.JButton" binding="voltarAoMenuInicialButton" default-binding="true">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Voltar ao Menu Inicial"/>
-        </properties>
-      </component>
       <component id="4e1ff" class="javax.swing.JButton" binding="listarTodosOsVeículosButton" default-binding="true">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Listar todos os Veículos"/>
+          <text value="Listar todos os Veículos Disponíveis"/>
         </properties>
       </component>
       <component id="f080" class="javax.swing.JButton" binding="excluirVeículoButton" default-binding="true">
@@ -90,6 +82,14 @@
         </constraints>
         <properties>
           <text value="Excluir Veículo"/>
+        </properties>
+      </component>
+      <component id="7ce3c" class="javax.swing.JButton" binding="voltarAoMenuInicialButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Voltar ao Menu Inicial"/>
         </properties>
       </component>
     </children>
