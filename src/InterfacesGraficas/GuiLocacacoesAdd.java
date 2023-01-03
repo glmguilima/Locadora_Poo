@@ -55,7 +55,7 @@ public class GuiLocacacoesAdd extends JFrame {
             }
 
 
-            JOptionPane.showMessageDialog(null,"Locação Cadastrado com sucesso"+ listaLoc,"Cadastro de Locações",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Locação Cadastrado com sucesso "+"Colocar informação da LOCA" ,"Cadastro de Locações",JOptionPane.INFORMATION_MESSAGE);
             limparCampos();
         }
 
