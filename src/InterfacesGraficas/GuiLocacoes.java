@@ -21,25 +21,27 @@ public class GuiLocacoes extends JFrame{
     ListaVeiculos listaV;
     ListaLocacoes listaLoc;
     ListaClientes listaC;
-    String placa;
-    Long CPF;
+    JFrame guiGeral;
+
     int cod;
-public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos listaV) {
+public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos listaV, JFrame guiGeral) {
     this.listaLoc=listaLoc;
     this.listaC=listaC;
     this.listaV=listaV;
-
+    this.guiGeral = guiGeral;
     setContentPane(painelLocacoes);
     setVisible(true);
     setSize(500,300);
     setTitle("Menu Locações");
 
 
+
+
     buttonAddLocacao.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-           new GuiLocacacoesAdd(listaC, listaV,listaLoc);
-            setVisible(false);
+           new GuiLocacacoesAdd(listaC, listaV,listaLoc,guiGeral);
+            dispose();
 
         }
     });
@@ -59,9 +61,9 @@ public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos l
 
 
     voltarAoMenuInicialButton.addActionListener(new ActionListener() {
-
         @Override
         public void actionPerformed(ActionEvent e) {
+            guiGeral.setVisible(true);
             dispose();
         }
     });
@@ -95,13 +97,14 @@ public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos l
     });
 }
 
+
     public int buscarLoc(){
         int cod = Integer.parseInt(textCodLoc.getText());
         if (listaLoc.existe(cod)) {
             return 1;
         }else
             System.out.println(AppCor.RED+"Locação não está cadastrada."+AppCor.RESET);
-            return 0;
+        return 0;
     }
 
 }

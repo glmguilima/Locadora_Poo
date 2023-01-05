@@ -2,8 +2,6 @@ package InterfacesGraficas;
 
 import Listas.ListaVeiculos;
 import Locadora.Caminhao;
-import Locadora.Veiculo;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,30 +16,26 @@ public class GuiCadastroCaminhao extends JFrame{
     private JButton voltarAoMenuInicialButton;
     private JButton salvarButton;
     private JButton limparCamposButton;
-    Veiculo veiculo;
+
     Caminhao caminhao;
     String placa;
-    int ano, numEixo, cargaMax;
+    int ano;
     double diaria;
-
+    JFrame guiGeral;
     ListaVeiculos listaV;
 
 
 
-public GuiCadastroCaminhao(ListaVeiculos listaV) {
+public GuiCadastroCaminhao(ListaVeiculos listaV, JFrame guiGeral) {
     this.listaV=listaV;
+    this.guiGeral=guiGeral;
     setContentPane(cadastroCaminhao);
     setTitle("Cadastro de Caminhão");
     setVisible(true);
     setSize(800,600);
 
 
-    limparCamposButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            limpaCampos();
-        }
-    });
+    limparCamposButton.addActionListener(e -> limpaCampos());
     salvarButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -68,6 +62,7 @@ public GuiCadastroCaminhao(ListaVeiculos listaV) {
     voltarAoMenuInicialButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+         guiGeral.setVisible(true);
          dispose();
         }
     });

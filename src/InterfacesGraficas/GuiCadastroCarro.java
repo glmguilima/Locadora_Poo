@@ -31,9 +31,11 @@ public class GuiCadastroCarro extends JFrame {
     private JComboBox comboBoxArCond;
     private JButton voltarMenuINI;
     ListaVeiculos listaV;
+    JFrame guiGeral;
 
-    public GuiCadastroCarro(ListaVeiculos listaV) {
+    public GuiCadastroCarro(ListaVeiculos listaV, JFrame guiGeral) {
         this.listaV=listaV;
+        this.guiGeral=guiGeral;
         setContentPane(cadastroVeiculos);
         setVisible(true);
         setSize(800,600);
@@ -92,7 +94,8 @@ public class GuiCadastroCarro extends JFrame {
         voltarMenuINI.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                guiGeral.setVisible(true);
+                dispose();
             }
         });
     }

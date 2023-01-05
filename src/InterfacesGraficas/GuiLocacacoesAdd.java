@@ -26,18 +26,27 @@ public class GuiLocacacoesAdd extends JFrame {
     ListaClientes listaC;
     ListaLocacoes listaL;
     ListaVeiculos listaV;
+    JFrame guiGeral;
 
-
-    public GuiLocacacoesAdd(ListaClientes listaC,ListaVeiculos listaV,ListaLocacoes listaL) {
+    /**
+     *
+     * @param listaC
+     * @param listaV
+     * @param listaL
+     */
+    public GuiLocacacoesAdd(ListaClientes listaC,ListaVeiculos listaV,ListaLocacoes listaL,JFrame guiGeral) {
         this.listaC = listaC;
         this.listaV = listaV;
         this.listaL = listaL;
+        this.guiGeral=guiGeral;
         setContentPane(painelAddLocacoes);
         setVisible(true);
         setSize(400,300);
         setTitle("Menu Locações");
 
-
+/**
+ *
+ */
     salvarLocaçãoButton.addActionListener(new ActionListener() {        @Override
         public void actionPerformed(ActionEvent e) {
         int seguroInt = comboBoxSeguro.getSelectedIndex();
@@ -53,8 +62,6 @@ public class GuiLocacacoesAdd extends JFrame {
             }else {
                 nova.setSeguro(false);
             }
-
-
             JOptionPane.showMessageDialog(null,"Locação Cadastrado com sucesso "+"Colocar informação da LOCA" ,"Cadastro de Locações",JOptionPane.INFORMATION_MESSAGE);
             limparCampos();
         }
@@ -62,6 +69,7 @@ public class GuiLocacacoesAdd extends JFrame {
     }
 
     });
+
     limparCamposButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -101,6 +109,7 @@ public class GuiLocacacoesAdd extends JFrame {
         }
     }
 
+
     public void pesquisarVeiculos(){
         if(listaV.getResumoInfo().length()==0){
             JOptionPane.showMessageDialog(null,"Não Há Veículos cadastrados","Lista de todos os Clientes",JOptionPane.INFORMATION_MESSAGE);
@@ -113,6 +122,7 @@ public class GuiLocacacoesAdd extends JFrame {
         textDataEntrega.setText("");
         textDataRetirada.setText("");
         textPlaca.setText("");
+        comboBoxSeguro.setSelectedIndex(0);
     }
 
 

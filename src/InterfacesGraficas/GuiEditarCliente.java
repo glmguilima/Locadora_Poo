@@ -20,12 +20,14 @@ public class GuiEditarCliente extends JFrame{
     private JButton voltarButton;
     ListaClientes listaC;
     Cliente cliente;
+    JFrame guiGeral;
     String nome,endereco;
     long CPF;
     int numCNH,telefone;
 
-    public GuiEditarCliente(final ListaClientes listaC, final long CPF) {
+    public GuiEditarCliente(final ListaClientes listaC, final long CPF,JFrame guiGeral) {
         this.CPF = CPF;
+        this.guiGeral=guiGeral;
         setVisible(true);
         setSize(900,300);
         setContentPane(editarCliente);
@@ -50,7 +52,8 @@ public class GuiEditarCliente extends JFrame{
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                guiGeral.setVisible(true);
+                dispose();
             }
         });
     }

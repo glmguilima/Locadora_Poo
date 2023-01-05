@@ -16,7 +16,7 @@ public class GuiCadastroOnibus extends JFrame{
     String placa;
     int ano;
     double diaria;
-     int numPassageiros;
+    int numPassageiros;
     String categoria;
     boolean wifi = false;
     boolean arCondicionado = false;
@@ -31,8 +31,12 @@ public class GuiCadastroOnibus extends JFrame{
     private JTextField textDiaria;
     private JComboBox comboBoxArCondicionado;
     private JTextField textAno;
+    ListaVeiculos listaV;
+    JFrame guiGeral;
 
-    public GuiCadastroOnibus(ListaVeiculos listaV) {
+    public GuiCadastroOnibus(ListaVeiculos listaV,JFrame guiGeral) {
+        this.guiGeral = guiGeral;
+        this.listaV = listaV;
         setContentPane(cadastroOnibus);
         setVisible(true);
         setSize(800,600);
@@ -110,7 +114,8 @@ public class GuiCadastroOnibus extends JFrame{
         voltarMenuINI.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                guiGeral.setVisible(true);
+                dispose();
             }
         });
     }

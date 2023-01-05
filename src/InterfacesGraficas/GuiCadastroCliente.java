@@ -23,17 +23,20 @@ public class GuiCadastroCliente extends JFrame {
     private JButton limparButton;
     Cliente cliente;
     String nome,endereco;
+    JFrame guiGeral;
     long CPF;
     int numCNH,telefone;
 
-    public GuiCadastroCliente(final ListaClientes listaC){
+    public GuiCadastroCliente(final ListaClientes listaC , JFrame guiGeral){
+        this.guiGeral = guiGeral;
         setContentPane(cadastroCliente);
         setVisible(true);
         setSize(800,600);
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            setVisible(false);
+                guiGeral.setVisible(true);
+                dispose();
             }
         });
         cadastrarButton.addActionListener(new ActionListener() {
@@ -77,16 +80,6 @@ public class GuiCadastroCliente extends JFrame {
         textNome.requestFocus();
     }
 
-
-
-    public void setData(GuiCadastroCliente data) {
-    }
-
-    public void getData(GuiCadastroCliente data) {
-    }
-
-    public boolean isModified(GuiCadastroCliente data) {
-        return false;
-    }
-
 }
+
+

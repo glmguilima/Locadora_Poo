@@ -19,11 +19,12 @@ public class GuiVeiculos extends JFrame  {
     private JButton adicionarÔnibusButton;
     private JButton adicionarCaminhaoButton;
     ListaVeiculos listaV;
+    JFrame guiGeral;
 
 
-public GuiVeiculos(ListaVeiculos listaV) {
+public GuiVeiculos(ListaVeiculos listaV , JFrame guiGeral) {
     this.listaV = listaV;
-
+    this.guiGeral = guiGeral;
     setContentPane(MenuVeiculos);
     setVisible(true);
     setSize(500,300);
@@ -60,7 +61,7 @@ public GuiVeiculos(ListaVeiculos listaV) {
     adicionarCarroButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            new GuiCadastroCarro(listaV);
+            new GuiCadastroCarro(listaV,guiGeral);
             setVisible(false);
         }
     });
@@ -82,21 +83,22 @@ public GuiVeiculos(ListaVeiculos listaV) {
     voltarAoMenuInicialButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            setVisible(false);
+            guiGeral.setVisible(true);
+            dispose();
         }
     });
     adicionarÔnibusButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
-            new GuiCadastroOnibus(listaV);
+            new GuiCadastroOnibus(listaV,guiGeral);
         }
     });
 
     adicionarCaminhaoButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            new GuiCadastroCaminhao(listaV);
+            new GuiCadastroCaminhao(listaV,guiGeral);
             setVisible(false);
         }
     });

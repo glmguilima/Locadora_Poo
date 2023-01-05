@@ -24,16 +24,19 @@ public class GuiClientes extends JFrame {
     ListaClientes listaC;
     Cliente cliente;
     String nome,endereco;
+    JFrame guiGeral;
     long CPF;
     int numCNH,telefone;
 
 
-    public GuiClientes(final ListaClientes listaC) {
+    public GuiClientes(final ListaClientes listaC, JFrame guiGeral) {
         this.listaC = listaC;
+        this.guiGeral = guiGeral;
         setContentPane(painelClientes);
         setVisible(true);
         setSize(400,300);
         setTitle("Menu Clientes");
+
 
         pesquisarButton.addActionListener(new ActionListener() {
             @Override
@@ -54,15 +57,15 @@ public class GuiClientes extends JFrame {
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GuiCadastroCliente(listaC);
+                new GuiCadastroCliente(listaC,guiGeral);
                 setVisible(false);
             }
         });
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GuiEditarCliente(listaC,Long.valueOf(textCPF.getText()));
-                setVisible(false);
+                new GuiEditarCliente(listaC,Long.valueOf(textCPF.getText()),guiGeral);
+                dispose();
             }
         });
         excluirButton.addActionListener(new ActionListener() {
@@ -82,6 +85,7 @@ public class GuiClientes extends JFrame {
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                guiGeral.setVisible(true);
                 setVisible(false);
             }
         });

@@ -28,6 +28,7 @@ public class GuiGeral extends Frame {
         new GuiGeral();
     }
 
+
     public JPanel getMenuInicial() {
         return menuInicial;
     }
@@ -85,8 +86,7 @@ public class GuiGeral extends Frame {
     }
 
     public GuiGeral() {
-
-        final JFrame frame = new JFrame("Locadora Defora da Pampa");
+        JFrame frame = new JFrame("Locadora Defora da Pampa");
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
@@ -98,18 +98,21 @@ public class GuiGeral extends Frame {
         frame.setSize(400, 300);
         frame.setContentPane(menuInicial);
 
+
         clientesButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GuiClientes(listaClientes);
-                setVisible(false);
+                new GuiClientes(listaClientes,frame);
+                frame.dispose();
             }
         });
         locaçõesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GuiLocacoes guiLocacoes = new GuiLocacoes(listaLocacoes, listaClientes,listaVeiculos);
-                setVisible(false);
+                GuiLocacoes guiLocacoes = new GuiLocacoes(listaLocacoes, listaClientes,listaVeiculos, frame);
+                guiLocacoes.setVisible(true);
+                frame.dispose();
+
             }
         });
 
@@ -117,8 +120,9 @@ public class GuiGeral extends Frame {
         veiculosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GuiVeiculos(listaVeiculos);
-                setVisible(false);
+                GuiVeiculos  guiVeiculos =  new GuiVeiculos(listaVeiculos, frame);
+                guiVeiculos.setVisible(true);
+                frame.dispose();
             }
         });
     }
