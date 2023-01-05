@@ -24,11 +24,12 @@ public class ListaLocacoes implements ILocacoes {
         listaLocacoes.add(l);
     }
 
-    @Override
     /**
-     * Implementado.
      *
+     * @param codigo Codigo do locação a ser capturado.
+     * @return A locação
      */
+    @Override
     public  Locacao get(int codigo) {
         for (int i = 0; i < listaLocacoes.size() ; i++) {
             if(listaLocacoes.get(i).getCodigo() == codigo){
@@ -38,12 +39,12 @@ public class ListaLocacoes implements ILocacoes {
         return null;
     }
 
-
-    @Override
     /**
-     * Implementado.
      *
+     * @param codigo Codigo da locação a ser capturada.
+     * @return informações da locação.
      */
+    @Override
     public String getInfo(int codigo) {
         for (int i = 0; i < listaLocacoes.size() ; i++) {
             if(listaLocacoes.get(i).getCodigo()==codigo){
@@ -53,12 +54,11 @@ public class ListaLocacoes implements ILocacoes {
         return null;
     }
 
-
-    @Override
     /**
-     * Implementado.
      *
+     * @return Lista de locações com informações.
      */
+    @Override
     public String getInfo() {
         for (int i = 0; i < listaLocacoes.size() ; i++) {
             return listaLocacoes.toString();
@@ -66,11 +66,12 @@ public class ListaLocacoes implements ILocacoes {
         return null;
     }
 
-    @Override
     /**
-     * Implementado.
      *
+     * @param codigo Codigo da locação a ser capturada.
+     * @return remove locação.
      */
+    @Override
     public boolean remove(int codigo) {
         for (int i = 0; i < listaLocacoes.size() ; i++) {
             if(listaLocacoes.get(i).getCodigo() == codigo){
@@ -81,11 +82,12 @@ public class ListaLocacoes implements ILocacoes {
         return false;
     }
 
-    @Override
     /**
-     * Implementado.
      *
+     * @param codigo Codigo da locação a ser verificada.
+     * @return existencia de locação.
      */
+    @Override
     public boolean existe(int codigo) {
         for (int i = 0; i < listaLocacoes.size() ; i++) {
             if(listaLocacoes.get(i).getCodigo() == codigo){

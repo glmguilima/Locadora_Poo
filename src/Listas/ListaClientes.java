@@ -11,16 +11,25 @@ import java.util.ArrayList;
 public class ListaClientes implements IClientes {
     public ArrayList<Cliente> listaCliente;
 
+
     public ListaClientes() {
         listaCliente = new ArrayList<Cliente>();
     }
 
-
+    /**
+     *
+     * @param c Cliente a ser inserido.
+     */
     @Override
     public void add(Cliente c) {
         listaCliente.add(c);
     }
 
+    /**
+     *
+     * @param CPF CPF do cliente a ser capturado.
+     * @return cliente pelo CPF
+     */
     @Override
     public Cliente get(long CPF) {
         for (int i = 0; i < listaCliente.size() ; i++) {
@@ -31,6 +40,11 @@ public class ListaClientes implements IClientes {
         return null;
     }
 
+    /**
+     *
+     * @param CPF CPF do cliente a ser capturado.
+     * @return informações do cliente.
+     */
     @Override
     public String getInfo(long CPF) {
         for (int i = 0; i < listaCliente.size() ; i++) {
@@ -41,6 +55,10 @@ public class ListaClientes implements IClientes {
         return null;
     }
 
+    /**
+     *
+     * @return informações de todos os clientes.
+     */
     @Override
     public String getInfo() {
         for (int i = 0; i < listaCliente.size() ; i++) {
@@ -49,6 +67,10 @@ public class ListaClientes implements IClientes {
         return null;
     }
 
+    /**
+     *
+     * @return Nome e CPF de todos os clientes.
+     */
     @Override
     public String getResumoInfo() {
         String dados= "";
@@ -59,7 +81,11 @@ public class ListaClientes implements IClientes {
         return dados;
     }
 
-
+    /**
+     *
+     * @param CPF CPF do cliente a ser capturado.
+     * @return Remove cliente da lista
+     */
     @Override
     public boolean remove(long CPF) {
         for (int i = 0; i < listaCliente.size(); i++) {
@@ -71,6 +97,11 @@ public class ListaClientes implements IClientes {
         return false;
     }
 
+    /**
+     *
+     * @param CPF CPF do cliente a ser verificado.
+     * @return Verica a existencia do cliente
+     */
     @Override
     public boolean existe(long CPF) {
         for (int i = 0; i < listaCliente.size(); i++) {
@@ -80,6 +111,7 @@ public class ListaClientes implements IClientes {
         }
         return false;
     }
+
 
     @Override
     public String toString() {

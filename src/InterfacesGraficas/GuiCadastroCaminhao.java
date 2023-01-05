@@ -24,9 +24,7 @@ public class GuiCadastroCaminhao extends JFrame{
     JFrame guiGeral;
     ListaVeiculos listaV;
 
-
-
-public GuiCadastroCaminhao(ListaVeiculos listaV, JFrame guiGeral) {
+    public GuiCadastroCaminhao(ListaVeiculos listaV, JFrame guiGeral) {
     this.listaV=listaV;
     this.guiGeral=guiGeral;
     setContentPane(cadastroCaminhao);
