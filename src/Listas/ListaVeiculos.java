@@ -9,10 +9,10 @@ import java.util.ArrayList;
  * @author glmgu on 21/10/2022
  */
 public class ListaVeiculos implements IVeiculos {
-   public ArrayList<Veiculo> listaVeiculo;
+    public ArrayList<Veiculo> listaVeiculo;
 
     public ListaVeiculos(){
-         listaVeiculo = new ArrayList<Veiculo>();
+        listaVeiculo = new ArrayList<Veiculo>();
     }
 
     /**
@@ -33,7 +33,7 @@ public class ListaVeiculos implements IVeiculos {
     public Veiculo get(String placa) {
         for (Veiculo veiculo : listaVeiculo) {
             if (veiculo.getPlaca().equals(placa))
-               return veiculo;
+                return veiculo;
         }
         return null;
     }
@@ -105,7 +105,7 @@ public class ListaVeiculos implements IVeiculos {
     public boolean existe(String placa) {
         for (int i = 0; i < listaVeiculo.size(); i++) {
             if(listaVeiculo.get(i).getPlaca().equals(placa)){
-            return true;
+                return true;
             }
         }
         return false;

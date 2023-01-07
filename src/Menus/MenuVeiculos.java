@@ -101,7 +101,7 @@ public class MenuVeiculos {
         System.out.println("veiculo cadastrado");
     }
     public void novoOni(){
-       System.out.println("Digite o ano do Ônibus");
+        System.out.println("Digite o ano do Ônibus");
         ano=entrada.nextInt();
         System.out.println("Digite o valor da diária");
         diaria= entrada.nextDouble();

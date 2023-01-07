@@ -182,28 +182,28 @@ public class MenuCliente {
 
 
     public void preCadastros() throws MinhaExcecoes {
-            Cliente c1 = null;
-            try {
-                c1 = new Cliente("Teste", 123456789, 987654321, "rua1", 11);
-            } catch (MinhaExcecoes e) {
-                e.printStackTrace();
-            }
-            Cliente c2 = null;
-            try {
-                c2 = new Cliente("Teste2", 113456789, 997654321, "rua2", 22);
-            } catch (MinhaExcecoes e) {
-                e.printStackTrace();
-            }
-            Cliente c3 = null;
-            try {
-                c3 = new Cliente("Teste3", 111456789, 999654321, "rua3", 33);
-            } catch (MinhaExcecoes e) {
-                e.printStackTrace();
-            }
-            listaC.add(c1);
-            listaC.add(c2);
-            listaC.add(c3);
+        Cliente c1 = null;
+        try {
+            c1 = new Cliente("Teste", 123456789, 987654321, "rua1", 11);
+        } catch (MinhaExcecoes e) {
+            e.printStackTrace();
         }
-
-
+        Cliente c2 = null;
+        try {
+            c2 = new Cliente("Teste2", 113456789, 997654321, "rua2", 22);
+        } catch (MinhaExcecoes e) {
+            e.printStackTrace();
+        }
+        Cliente c3 = null;
+        try {
+            c3 = new Cliente("Teste3", 111456789, 999654321, "rua3", 33);
+        } catch (MinhaExcecoes e) {
+            e.printStackTrace();
+        }
+        listaC.add(c1);
+        listaC.add(c2);
+        listaC.add(c3);
     }
+
+
+}
