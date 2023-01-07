@@ -41,7 +41,7 @@ public class GuiClientes extends JFrame {
         pesquisarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               pesquisarClientes();
+                pesquisarClientes();
             }
         });
         listarTodosOsClientesButton.addActionListener(new ActionListener() {
@@ -64,21 +64,30 @@ public class GuiClientes extends JFrame {
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GuiEditarCliente(listaC,Long.valueOf(textCPF.getText()),guiGeral);
-                dispose();
+                if (textCPF.getText().length()==0){
+                    JOptionPane.showMessageDialog(null, "Informe o CPF do Cliente", "info", JOptionPane.INFORMATION_MESSAGE);
+                }else {
+
+                    new GuiEditarCliente(listaC,Long.valueOf(textCPF.getText()),guiGeral);
+                    dispose();
+                }
             }
         });
         excluirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CPF = Long.valueOf(textCPF.getText());
-                if (listaC.existe(CPF)==true){
-                   int a = JOptionPane.showConfirmDialog(null,"Deseja Excluir o cliente "+listaC.getInfo(CPF),"Confirmação",JOptionPane.OK_OPTION);
-                   if (a==0){
-                       listaC.remove(CPF);
-                   }
+                if (textCPF.getText().length()==0){
+                    JOptionPane.showMessageDialog(null, "Informe o CPF do Cliente", "info", JOptionPane.INFORMATION_MESSAGE);
                 }else {
-                    JOptionPane.showMessageDialog(null,"Cliente não Cadastrado","info",JOptionPane.INFORMATION_MESSAGE);
+                    CPF = Long.valueOf(textCPF.getText());
+                    if (listaC.existe(CPF)==true){
+                        int a = JOptionPane.showConfirmDialog(null,"Deseja Excluir o cliente "+listaC.getInfo(CPF),"Confirmação",JOptionPane.OK_OPTION);
+                        if (a==0){
+                            listaC.remove(CPF);
+                        }
+                    }else {
+                        JOptionPane.showMessageDialog(null,"Cliente não Cadastrado","info",JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
             }
         });
@@ -92,13 +101,18 @@ public class GuiClientes extends JFrame {
 
     }
     public void pesquisarClientes() {
-        CPF = Long.valueOf(textCPF.getText());
-        if (listaC.existe(CPF) == true) {
+        if (textCPF.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "Informe o CPF do Cliente", "info", JOptionPane.INFORMATION_MESSAGE);
+        }else {
 
-            JOptionPane.showMessageDialog(null, listaC.get(CPF), "info", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Cliente não Cadastrado", "info", JOptionPane.INFORMATION_MESSAGE);
+            CPF = Long.valueOf(textCPF.getText());
+            if (listaC.existe(CPF) == true) {
 
+                JOptionPane.showMessageDialog(null, listaC.get(CPF), "info", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente não Cadastrado", "info", JOptionPane.INFORMATION_MESSAGE);
+
+            }
         }
     }
 }

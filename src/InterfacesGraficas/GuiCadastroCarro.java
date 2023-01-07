@@ -44,43 +44,48 @@ public class GuiCadastroCarro extends JFrame {
         salvarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                placa= textPlaca.getText();
-                ano= Integer.parseInt(textAno.getText());
-                diaria= Double.parseDouble(textDiaria.getText());
-                mediaKM = Double.parseDouble(textMedia.getText());
-                if (listaV.existe(placa)==false){
-                    if (comboBoxPortas.getSelectedIndex()==0||comboBoxArCond.getSelectedIndex()==0) {
-                        JOptionPane.showMessageDialog(null, "Selecione os campos obrigatórios");
-                    }else{
-                        carro = new Carro(placa,ano,diaria);
-                        listaV.listaVeiculo.add(carro);
-                        carro.setMediaKM(mediaKM);
+                if (textPlaca.getText().length()==0||textMedia.getText().length()==0||textDiaria.getText().length()==0||textAno.getText().length()==0){
+                    JOptionPane.showMessageDialog(null, "Preencha as informações do veículo (placa, ano, diária e média) ", "info", JOptionPane.INFORMATION_MESSAGE);
+                }else {
 
-                        if(comboBoxPortas.getSelectedIndex()==2){
-                            numPortas=5 ;
-                            carro.setNumPortas(numPortas);
-                        } else {
-                            numPortas=3 ;
-                            carro.setNumPortas(numPortas);
-                        }
+                    placa= textPlaca.getText();
+                    ano= Integer.parseInt(textAno.getText());
+                    diaria= Double.parseDouble(textDiaria.getText());
+                    mediaKM = Double.parseDouble(textMedia.getText());
+                    if (listaV.existe(placa)==false){
+                        if (comboBoxPortas.getSelectedIndex()==0||comboBoxArCond.getSelectedIndex()==0) {
+                            JOptionPane.showMessageDialog(null, "Selecione os campos obrigatórios");
+                        }else{
+                            carro = new Carro(placa,ano,diaria);
+                            listaV.listaVeiculo.add(carro);
+                            carro.setMediaKM(mediaKM);
 
-                        if (comboBoxArCond.getSelectedIndex()==1){
-                            arCondicionado = true;
-                            carro.setArCondicionado(true);
-                        }
-                        else {
-                            arCondicionado = false;
-                            carro.setArCondicionado(false);
+                            if(comboBoxPortas.getSelectedIndex()==2){
+                                numPortas=5 ;
+                                carro.setNumPortas(numPortas);
+                            } else {
+                                numPortas=3 ;
+                                carro.setNumPortas(numPortas);
+                            }
 
+                            if (comboBoxArCond.getSelectedIndex()==1){
+                                arCondicionado = true;
+                                carro.setArCondicionado(true);
+                            }
+                            else {
+                                arCondicionado = false;
+                                carro.setArCondicionado(false);
+
+                            }
+                            JOptionPane.showMessageDialog(null,"Veículo Cadastrado com sucesso"+ listaV.get(placa),"Cadastro de Veiculo",JOptionPane.INFORMATION_MESSAGE);
+                            limpaCampos();
                         }
-                        JOptionPane.showMessageDialog(null,"Veículo Cadastrado com sucesso"+ listaV.get(placa),"Cadastro de Veiculo",JOptionPane.INFORMATION_MESSAGE);
-                        limpaCampos();
                     }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"Veiculo já consta no  cadastro"+ listaV.get(placa),"Veículo Encontrado",JOptionPane.INFORMATION_MESSAGE);
-                }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Veiculo já consta no  cadastro"+ listaV.get(placa),"Veículo Encontrado",JOptionPane.INFORMATION_MESSAGE);
+                    }
 
+                }
             }
 
         });

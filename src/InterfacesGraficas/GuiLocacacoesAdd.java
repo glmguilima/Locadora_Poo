@@ -21,6 +21,7 @@ public class GuiLocacacoesAdd extends JFrame {
     private JButton pesquisarVeiculosDisponíveisButton;
     private JButton pesquisarClienteButton;
     private long CPF;
+    private int seguroInt;
     private String placa;
     private boolean seguro;
     ListaClientes listaC;
@@ -47,42 +48,54 @@ public class GuiLocacacoesAdd extends JFrame {
 /**
  *
  */
-    salvarLocaçãoButton.addActionListener(new ActionListener() {        @Override
-        public void actionPerformed(ActionEvent e) {
-        int seguroInt = comboBoxSeguro.getSelectedIndex();
-        if (seguroInt == 0) {
-            JOptionPane.showMessageDialog(null, "Selecione os campos obrigatórios");
-        } else {
-            Locacao nova = new Locacao(listaC.get(CPF), listaV.get(textPlaca.getText()), false, textDataRetirada.getText(), textDataEntrega.getText());
-            listaL.add(nova);
-            listaV.remove(textPlaca.getText());
+        salvarLocaçãoButton.addActionListener(new ActionListener() {
 
-            if (seguroInt == 1) {
-                nova.setSeguro(seguro);
-            }else {
-                nova.setSeguro(false);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textCPF.getText().length() == 0||textPlaca.getText().length()==0||textDataEntrega.getText().length()==0||textDataRetirada.getText().length()==0) {
+                    JOptionPane.showMessageDialog(null, "Preencha as informações ( CPF, Placa, data entrega, data retirada. ", "info", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+
+                    if (textCPF.getText().length() == 0) {
+                        JOptionPane.showMessageDialog(null, "Informe o CPF do Cliente", "info", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+
+
+                        int seguroInt = comboBoxSeguro.getSelectedIndex();
+                        if (seguroInt == 0) {
+                            JOptionPane.showMessageDialog(null, "Selecione uma opção de Seguro");
+                        } else {
+                            Locacao nova = new Locacao(listaC.get(CPF), listaV.get(textPlaca.getText()), false, textDataRetirada.getText(), textDataEntrega.getText());
+                            listaL.add(nova);
+                            listaV.remove(textPlaca.getText());
+
+                            if (seguroInt == 1) {
+                                nova.setSeguro(seguro);
+                            } else {
+                                nova.setSeguro(false);
+                            }
+                            JOptionPane.showMessageDialog(null, "Locação Cadastrado com sucesso ", "Cadastro de Locações", JOptionPane.INFORMATION_MESSAGE);
+                            limparCampos();
+                        }
+                    }
+                }
             }
-            JOptionPane.showMessageDialog(null,"Locação Cadastrado com sucesso "+"Colocar informação da LOCA" ,"Cadastro de Locações",JOptionPane.INFORMATION_MESSAGE);
-            limparCampos();
-        }
+        });
 
-    }
+        limparCamposButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limparCampos();
+            }
+        });
 
-    });
-
-    limparCamposButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            limparCampos();
-        }
-    });
-
-    voltarAoMenuInicialButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setVisible(false);
-        }
-    });
+        voltarAoMenuInicialButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                guiGeral.setVisible(true);
+                dispose();
+            }
+        });
 
 
         pesquisarVeiculosDisponíveisButton.addActionListener(new ActionListener() {
@@ -99,16 +112,20 @@ public class GuiLocacacoesAdd extends JFrame {
         });
     }
     public void pesquisarClientes() {
-        CPF = Long.valueOf(textCPF.getText());
-        if (listaC.existe(CPF) == true) {
+        if (textCPF.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "Informe o CPF do Cliente", "info", JOptionPane.INFORMATION_MESSAGE);
+        }else {
+            CPF = Long.valueOf(textCPF.getText());
+            if (listaC.existe(CPF) == true) {
 
-            JOptionPane.showMessageDialog(null, listaC.get(CPF), "info", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Cliente não Cadastrado", "info", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, listaC.get(CPF), "info", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente não Cadastrado", "info", JOptionPane.INFORMATION_MESSAGE);
+
+            }
 
         }
     }
-
 
     public void pesquisarVeiculos(){
         if(listaV.getResumoInfo().length()==0){
