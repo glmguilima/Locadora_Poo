@@ -4,7 +4,6 @@ import Listas.ListaClientes;
 import Listas.ListaLocacoes;
 import Listas.ListaVeiculos;
 import Locadora.Locacao;
-
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -45,9 +44,7 @@ public class GuiLocacacoesAdd extends JFrame {
         setSize(400,300);
         setTitle("Menu Locações");
 
-/**
- *
- */
+
         salvarLocaçãoButton.addActionListener(new ActionListener() {
 
             @Override
@@ -63,23 +60,23 @@ public class GuiLocacacoesAdd extends JFrame {
                             JOptionPane.showMessageDialog(null, "Veículo não disponível ", "info", JOptionPane.INFORMATION_MESSAGE);
                         }else{
 
-                        int seguroInt = comboBoxSeguro.getSelectedIndex();
-                        if (seguroInt == 0) {
-                            JOptionPane.showMessageDialog(null, "Selecione uma opção de Seguro");
-                        } else {
-                            Locacao nova = new Locacao(listaC.get(Long.parseLong(textCPF.getText())), listaV.get(textPlaca.getText()), false, textDataRetirada.getText(), textDataEntrega.getText());
-                            listaL.add(nova);
-                            listaV.remove(textPlaca.getText());
-
-                            if (seguroInt == 1) {
-                                nova.setSeguro(true);
+                            int seguroInt = comboBoxSeguro.getSelectedIndex();
+                            if (seguroInt == 0) {
+                                JOptionPane.showMessageDialog(null, "Selecione uma opção de Seguro");
                             } else {
-                                nova.setSeguro(false);
+                                Locacao nova = new Locacao(listaC.get(Long.parseLong(textCPF.getText())), listaV.get(textPlaca.getText()), false, textDataRetirada.getText(), textDataEntrega.getText());
+                                listaL.add(nova);
+                                listaV.remove(textPlaca.getText());
+
+                                if (seguroInt == 1) {
+                                    nova.setSeguro(true);
+                                } else {
+                                    nova.setSeguro(false);
+                                }
+                                JOptionPane.showMessageDialog(null, "Locação Cadastrado com sucesso "+listaL.getInfo(nova.getCodigo()), "Cadastro de Locações", JOptionPane.INFORMATION_MESSAGE);
+                                limparCampos();
                             }
-                            JOptionPane.showMessageDialog(null, "Locação Cadastrado com sucesso "+listaL.getInfo(nova.getCodigo()), "Cadastro de Locações", JOptionPane.INFORMATION_MESSAGE);
-                            limparCampos();
                         }
-                    }
                     }
                 }
             }

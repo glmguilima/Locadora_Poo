@@ -33,7 +33,7 @@ public class Menu {
             entrada.nextLine();
             switch(op){
                 case 1:
-                  menuCliente.menuCliente();
+                    menuCliente.menuCliente();
                     break;
                 case 2:
                     menuLocacoes.menuLocacoes();

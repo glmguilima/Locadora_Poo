@@ -127,7 +127,7 @@ public class MenuLocacoes {
     }
 
     public void modificarLocacao() {
-    	int opcao = 0;
+        int opcao = 0;
         System.out.println("Segues a lista de locações em aberto");
         if (listaLoc.listaLocacoes.size()==0){
             System.out.println("Lista vazia, não há locações");

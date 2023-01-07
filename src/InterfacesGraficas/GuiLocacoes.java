@@ -24,85 +24,85 @@ public class GuiLocacoes extends JFrame{
     JFrame guiGeral;
 
     int cod;
-public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos listaV, JFrame guiGeral) {
-    this.listaLoc=listaLoc;
-    this.listaC=listaC;
-    this.listaV=listaV;
-    this.guiGeral = guiGeral;
-    setContentPane(painelLocacoes);
-    setVisible(true);
-    setSize(500,300);
-    setTitle("Menu Locações");
+    public GuiLocacoes(ListaLocacoes listaLoc, ListaClientes listaC, ListaVeiculos listaV, JFrame guiGeral) {
+        this.listaLoc=listaLoc;
+        this.listaC=listaC;
+        this.listaV=listaV;
+        this.guiGeral = guiGeral;
+        setContentPane(painelLocacoes);
+        setVisible(true);
+        setSize(500,300);
+        setTitle("Menu Locações");
 
 
 
 
-    buttonAddLocacao.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-           new GuiLocacacoesAdd(listaC, listaV,listaLoc,guiGeral);
-            dispose();
+        buttonAddLocacao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GuiLocacacoesAdd(listaC, listaV,listaLoc,guiGeral);
+                dispose();
 
-        }
-    });
-    buttonBuscaLocacoes.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (textCodLoc.getText().length() == 0) {
-                JOptionPane.showMessageDialog(null, "Preencha a informção com o código da locação ", "info", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                cod = Integer.parseInt(textCodLoc.getText());
-                buscarLoc();
-                if (buscarLoc() == 1) {
-                    JOptionPane.showMessageDialog(null, listaLoc.getInfo(cod), "Informação de locação", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Locação NÂO encotrada, verique em todas as locações o código correto", "Informação de locação", JOptionPane.INFORMATION_MESSAGE);
-                }
             }
-        }
-    });
-
-
-
-    voltarAoMenuInicialButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            guiGeral.setVisible(true);
-            dispose();
-        }
-    });
-    excluirLocaçãoButton.addActionListener(new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (textCodLoc.getText().length() == 0) {
-                JOptionPane.showMessageDialog(null, "Preencha a informção com o código da locação ", "info", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                cod = Integer.parseInt(textCodLoc.getText());
-                if (buscarLoc() == 1) {
-                    int a = JOptionPane.showConfirmDialog(null, "Deseja Excluir A Locação " + listaLoc.getInfo(cod), "Confirmação", JOptionPane.OK_OPTION);
-                    if (a == 0) {
-                        listaLoc.remove(cod);
-                        textCodLoc.setText("");
+        });
+        buttonBuscaLocacoes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textCodLoc.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(null, "Preencha a informção com o código da locação ", "info", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    cod = Integer.parseInt(textCodLoc.getText());
+                    buscarLoc();
+                    if (buscarLoc() == 1) {
+                        JOptionPane.showMessageDialog(null, listaLoc.getInfo(cod), "Informação de locação", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Locação NÂO encotrada, verique em todas as locações o código correto", "Informação de locação", JOptionPane.INFORMATION_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Locação não Cadastrado", "info", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+        });
 
-        }
-    });
-    relaçãoDeTodasAsButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if(listaLoc.listaLocacoes.size()==0){
-                JOptionPane.showMessageDialog(null,"Não Há locações cadastrados","Lista de todos as Locações",JOptionPane.INFORMATION_MESSAGE);
-            }else {
-                JOptionPane.showMessageDialog(null, listaLoc.getInfo(), "Lista de todos os Locações", JOptionPane.INFORMATION_MESSAGE);
+
+
+        voltarAoMenuInicialButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                guiGeral.setVisible(true);
+                dispose();
             }
-        }
-    });
-}
+        });
+        excluirLocaçãoButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textCodLoc.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(null, "Preencha a informção com o código da locação ", "info", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    cod = Integer.parseInt(textCodLoc.getText());
+                    if (buscarLoc() == 1) {
+                        int a = JOptionPane.showConfirmDialog(null, "Deseja Excluir A Locação " + listaLoc.getInfo(cod), "Confirmação", JOptionPane.OK_OPTION);
+                        if (a == 0) {
+                            listaLoc.remove(cod);
+                            textCodLoc.setText("");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Locação não Cadastrado", "info", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+
+            }
+        });
+        relaçãoDeTodasAsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(listaLoc.listaLocacoes.size()==0){
+                    JOptionPane.showMessageDialog(null,"Não Há locações cadastrados","Lista de todos as Locações",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    JOptionPane.showMessageDialog(null, listaLoc.getInfo(), "Lista de todos os Locações", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+    }
 
 
     public int buscarLoc(){

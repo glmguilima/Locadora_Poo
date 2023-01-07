@@ -1,5 +1,6 @@
 package Locadora;
 
+import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -13,7 +14,8 @@ public class Locacao {
     private boolean seguro = false;
     private Cliente cliente;
     private Veiculo veiculo;
-    private String dataInicial,dataFinal;
+    private String dataInicial;
+    private String dataFinal;
 
 
 
