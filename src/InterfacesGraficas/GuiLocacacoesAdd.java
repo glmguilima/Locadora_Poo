@@ -56,27 +56,30 @@ public class GuiLocacacoesAdd extends JFrame {
                     JOptionPane.showMessageDialog(null, "Preencha as informações ( CPF, Placa, data entrega, data retirada. ", "info", JOptionPane.INFORMATION_MESSAGE);
                 } else {
 
-                    if (textCPF.getText().length() == 0) {
-                        JOptionPane.showMessageDialog(null, "Informe o CPF do Cliente", "info", JOptionPane.INFORMATION_MESSAGE);
+                    if (!listaC.existe(Long.parseLong(textCPF.getText()))) {
+                        JOptionPane.showMessageDialog(null, "Cliente não cadastrado no Sistema", "info", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-
+                        if (!listaV.existe(textPlaca.getText())){
+                            JOptionPane.showMessageDialog(null, "Veículo não disponível ", "info", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
 
                         int seguroInt = comboBoxSeguro.getSelectedIndex();
                         if (seguroInt == 0) {
                             JOptionPane.showMessageDialog(null, "Selecione uma opção de Seguro");
                         } else {
-                            Locacao nova = new Locacao(listaC.get(CPF), listaV.get(textPlaca.getText()), false, textDataRetirada.getText(), textDataEntrega.getText());
+                            Locacao nova = new Locacao(listaC.get(Long.parseLong(textCPF.getText())), listaV.get(textPlaca.getText()), false, textDataRetirada.getText(), textDataEntrega.getText());
                             listaL.add(nova);
                             listaV.remove(textPlaca.getText());
 
                             if (seguroInt == 1) {
-                                nova.setSeguro(seguro);
+                                nova.setSeguro(true);
                             } else {
                                 nova.setSeguro(false);
                             }
-                            JOptionPane.showMessageDialog(null, "Locação Cadastrado com sucesso ", "Cadastro de Locações", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Locação Cadastrado com sucesso "+listaL.getInfo(nova.getCodigo()), "Cadastro de Locações", JOptionPane.INFORMATION_MESSAGE);
                             limparCampos();
                         }
+                    }
                     }
                 }
             }

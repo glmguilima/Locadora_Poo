@@ -95,7 +95,7 @@ public class GuiGeral extends Frame {
         frame.setTitle("Locadora de Fora da Pampa");
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(400, 300);
+        frame.setSize(500, 400);
         frame.setContentPane(menuInicial);
 
 
